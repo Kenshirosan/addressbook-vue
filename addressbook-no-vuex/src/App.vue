@@ -1,0 +1,166 @@
+<template>
+    <div>
+        <div class="mb-5-percent">
+            <header>
+                <nav class="navbar navbar-dark bg-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img
+                                alt="Vue logo"
+                                src="./assets/logo.png"
+                                width="30"
+                                height="30"
+                                class="d-inline-block align-top"
+                                loading="lazy"
+                            />
+                            Carnet d'addresses</a
+                        >
+                    </div>
+                </nav>
+            </header>
+        </div>
+
+        <div class="container mt-10">
+            <section class="form">
+                <ContactForm
+                    :contacts="contacts"
+                    ref="contactForm"
+                    @contactsEmpty="contactsEmpty"
+                    @updateContact="updateContact"
+                ></ContactForm>
+            </section>
+            <section class="row" v-if="contactsExist">
+                <p class="text-info">
+                    <em>Double cliquez sur un contact pour l'editer</em>
+                </p>
+                <ContactList
+                    v-for="(contact, index) in contacts"
+                    :key="index"
+                    :contact="contact"
+                    :index="index"
+                    :contactsExist="contactsExist"
+                >
+                </ContactList>
+            </section>
+            <section class="row" v-else>
+                <h2>Pas de contacts</h2>
+            </section>
+            <flash></flash>
+        </div>
+    </div>
+</template>
+
+<script>
+    import requests from './mixins/requests';
+    import events from './mixins/globalEvents';
+    import flash from './components/Flash.vue';
+    import ContactForm from './components/ContactForm.vue';
+    import ContactList from './components/ContactList.vue';
+
+    export default {
+        name: 'App',
+        mixins: [requests, events],
+        components: {
+            ContactForm,
+            ContactList,
+            flash,
+        },
+
+        data() {
+            return {
+                contacts: [],
+                key: 'Contacts',
+            };
+        },
+
+        computed: {
+            contactsExist() {
+                return this.contacts.length > 0;
+            },
+        },
+
+        created() {
+            this.getContactsFromLocalStorage(this.key);
+        },
+
+        methods: {
+            newContact(contact) {
+                this.contacts.push(contact);
+
+                this.addToLocalStorage(this.key, this.contacts);
+            },
+
+            contactsEmpty() {
+                this.contacts = [];
+
+                this.deleteContactsFromLocalStorage(this.key);
+            },
+
+            updateContact(index, contact) {
+                this.contacts[index] = contact;
+
+                this.addToLocalStorage(this.key, this.contacts);
+            },
+
+            deleteContact(index) {
+                this.contacts.splice(index, 1);
+
+                this.addToLocalStorage(this.key, this.contacts);
+            },
+        },
+    };
+</script>
+
+<style>
+    #app {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
+    }
+    .mb-10 {
+        margin-bottom: 10px;
+    }
+
+    .mb-5-percent {
+        margin-bottom: 5%;
+    }
+
+    .mt-10 {
+        margin-top: 10px;
+    }
+
+    h3 {
+        margin: 40px 0 0;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+    a {
+        color: #42b983;
+    }
+
+    li:first-of-type {
+        background-color: lightgreen;
+        color: blue;
+    }
+
+    li:first-of-type:hover {
+        cursor: pointer;
+    }
+
+    li span {
+        display: block;
+    }
+
+    #js-contact-list {
+        width: 100%;
+    }
+</style>
