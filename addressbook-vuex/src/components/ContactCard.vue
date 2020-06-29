@@ -4,7 +4,6 @@
             class="list-group-item"
             v-for="(value, name) of contact"
             v-if="name !== 'updated_at' && name !== 'created_at'"
-            :data-field="name"
             @dblclick="editing"
         >
             <div>
