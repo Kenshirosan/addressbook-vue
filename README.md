@@ -11,7 +11,7 @@
 ## Project setup
 
 ```sh
-git clone https://github.com/Kenshirosan/addressbook.git
+git clone https://github.com/Kenshirosan/addressbook-vue.git
 ```
 
 ```sh
