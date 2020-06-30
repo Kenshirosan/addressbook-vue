@@ -44,7 +44,7 @@
 
 <script>
     import { mapState, mapGetters } from 'vuex';
-    import events from './events/globalEvents';
+    import events from './events';
     import flash from './components/Flash.vue';
     import ContactForm from './components/ContactForm.vue';
     import ContactList from './components/ContactList.vue';
