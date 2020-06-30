@@ -1,6 +1,6 @@
 <template>
-    <div class="alert-section" v-show="show">
-        <div class="alert alert-element is-active" :class="`alert-${level}`">
+    <div class="alert-section">
+        <div class="alert alert-element" :class="classes">
             <div class="icon">
                 <img src="/icon/bell.svg" alt="notification icon" />
             </div>
@@ -31,6 +31,12 @@
             window.events.$on('flash', data => this.flash(data));
         },
 
+        computed: {
+            classes() {
+                return this.show ? `is-active alert-${this.level}` : ``;
+            },
+        },
+
         methods: {
             flash(data) {
                 if (data) {
@@ -39,13 +45,11 @@
                 }
                 this.show = true;
 
-                // this.$el.firstChild.classList.add('is-active');
                 this.hide(data.duration);
             },
 
             hide(duration) {
                 setTimeout(() => {
-                    // this.$el.firstChild.classList.remove('is-active');
                     this.show = false;
                 }, duration);
             },
@@ -74,7 +78,7 @@
         transform-origin: bottom left;
         transform: rotate(90deg) scale(0.5) translate(100px, -300px)
             rotateX(90deg);
-        transition: all 250ms cubic-bezier(0, 0.6, 0.35, 1.4);
+        transition: all 500ms cubic-bezier(0, 0.6, 0.35, 1.4);
     }
     .alert-section .alert-element .icon {
         padding: 20px;
@@ -86,7 +90,7 @@
     .alert-section .alert-element .icon i {
         transform: scale(0.2) translateY(50px);
         opacity: 0;
-        transition: all 250ms cubic-bezier(0, 0.6, 0.35, 1.4) 400ms;
+        transition: all 500ms cubic-bezier(0, 0.6, 0.35, 1.4) 400ms;
     }
 
     .alert-section .alert-element .text {
@@ -96,7 +100,7 @@
         align-items: center;
         border-radius: 0px 4px 4px 0px;
         transform: rotateY(90deg);
-        transition: all 250ms ease-in-out 300ms;
+        transition: all 500ms ease-in-out 250ms;
         transform-origin: center left;
         opacity: 0;
     }
@@ -117,5 +121,8 @@
     }
     .alert-danger {
         background-color: red;
+    }
+    .alert-primary {
+        background-color: blue;
     }
 </style>

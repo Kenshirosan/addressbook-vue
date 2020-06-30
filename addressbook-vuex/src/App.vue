@@ -1,24 +1,22 @@
 <template>
     <div>
-        <div class="mb-5-percent">
-            <header>
-                <nav class="navbar navbar-dark bg-dark">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
-                            <img
-                                alt="Vue logo"
-                                src="./assets/logo.png"
-                                width="30"
-                                height="30"
-                                class="d-inline-block align-top"
-                                loading="lazy"
-                            />
-                            Carnet d'addresses</a
-                        >
-                    </div>
-                </nav>
-            </header>
-        </div>
+        <header class="mb-5-percent">
+            <nav class="navbar navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img
+                            alt="Vue logo"
+                            src="./assets/logo.png"
+                            width="30"
+                            height="30"
+                            class="d-inline-block align-top"
+                            loading="lazy"
+                        />
+                        Carnet d'addresses
+                    </a>
+                </div>
+            </nav>
+        </header>
 
         <div class="container mt-10">
             <section class="form">

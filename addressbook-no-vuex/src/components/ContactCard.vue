@@ -41,12 +41,6 @@
             index: Number,
         },
 
-        data() {
-            return {
-                updated: '',
-            };
-        },
-
         created() {
             moment.locale('fr');
         },

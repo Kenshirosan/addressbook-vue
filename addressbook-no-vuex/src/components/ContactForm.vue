@@ -17,7 +17,8 @@
             >
                 Supprimer tous les contacts
             </button>
-
+            <h3 v-if="isVisible && ! editMode">Ajouter un contact</h3>
+            <h3 v-if="editMode">Edition</h3>
             <form
                 v-if="isVisible"
                 @submit.prevent="submitContact"
@@ -100,8 +101,6 @@
 
         name: 'ContactForm',
 
-        props: ['contacts'],
-
         data() {
             return {
                 error: '',
@@ -143,6 +142,11 @@
                     created_at: new Date(),
                     updated_at: '',
                 };
+
+                if(this.editMode) {
+                    this.editMode = false;
+                }
+                return this.editMode = false;
             },
 
             showForm() {
@@ -176,7 +180,6 @@
 
             deleteContacts() {
                 this.$emit('contactsEmpty');
-                this.flash('Contacts successfully deleted', 'danger');
             },
 
             checkFormFields(contact) {

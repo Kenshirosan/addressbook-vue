@@ -18,7 +18,8 @@
             >
                 Supprimer tous les contacts
             </button>
-
+            <h3 v-if="isVisible && ! editMode">Ajouter un contact</h3>
+            <h3 v-if="editMode">Edition</h3>
             <form
                 v-if="isVisible"
                 @submit.prevent="submitContact"
@@ -142,6 +143,8 @@
                         : 'Ajouter un contact';
                 this.isVisible = !this.isVisible;
                 this.getInitialContact();
+
+                this.editMode = false;
             },
 
             submitContact() {
@@ -177,7 +180,7 @@
 
                 this.$store.dispatch('setHasContacts');
 
-                this.flash('Contacts successfully deleted', 'info');
+                this.flash('Contacts successfully deleted', 'primary');
             },
 
             checkFormFields(contact) {
