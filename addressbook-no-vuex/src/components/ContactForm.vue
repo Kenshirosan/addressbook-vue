@@ -142,7 +142,7 @@
                     created_at: new Date(),
                     updated_at: '',
                 };
-                
+
                 return this.editMode = false;
             },
 
@@ -159,20 +159,28 @@
                 this.checkFormFields(this.contact);
 
                 if (this.isValidForm) {
-                    if (this.editMode) {
-                        this.contact.updated_at = new Date();
-                        this.$parent.updateContact(
-                            this.contactIndex,
-                            this.contact
-                        );
-                        this.flash('Contact successfully updated');
-                    } else {
-                        this.$parent.newContact(this.contact);
-                        this.flash('Contact successfully created');
-                    }
-
-                    return this.resetForm();
+                    this.persistForm(this.contact);
                 }
+            },
+
+            persistForm(contact) {
+                let message = 'Contact successfully updated';
+
+                if (this.editMode) {
+                    this.contact.updated_at = new Date();
+
+                    this.$parent.updateContact(
+                        this.contactIndex,
+                        this.contact
+                    );
+
+                } else {
+                    this.$parent.newContact(this.contact);
+                    message = 'Contact successfully created';
+                }
+
+                this.flash(message);
+                return this.resetForm();
             },
 
             deleteContacts() {
