@@ -47,8 +47,8 @@
 </template>
 
 <script>
-    import requests from './mixins/requests';
-    import events from './mixins/globalEvents';
+    import requests from './requests';
+    import events from './events';
     import flash from './components/Flash.vue';
     import ContactForm from './components/ContactForm.vue';
     import ContactList from './components/ContactList.vue';

@@ -30,7 +30,7 @@
 
 <script>
     import moment from 'moment';
-    import events from '../mixins/globalEvents';
+    import events from '../events';
 
     export default {
         name: 'ContactCard',

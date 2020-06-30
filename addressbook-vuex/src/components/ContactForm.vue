@@ -95,7 +95,7 @@
 
 <script>
     import { mapMutations, mapState } from 'vuex';
-    import events from '../mixins/globalEvents';
+    import events from '../events';
 
     export default {
         mixins: [events],
@@ -115,13 +115,11 @@
         computed: mapState(['contactsExist', 'contact']),
 
         created() {
-            this.$store.dispatch('setHasContacts');
-
             window.events.$on('editing', payload => {
                 this.isVisible = true;
                 this.$store.dispatch('editContact', { index: payload.index });
                 this.btnText = 'Annuler';
-                return (this.editMode = true);
+                this.editMode = true;
             });
         },
 
@@ -172,7 +170,7 @@
                 }
 
                 this.flash(message);
-                return this.resetForm();
+                this.resetForm();
             },
 
             deleteContacts() {

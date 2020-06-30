@@ -93,8 +93,8 @@
 </template>
 
 <script>
-    import requests from '../mixins/requests';
-    import events from '../mixins/globalEvents';
+    import requests from '../requests';
+    import events from '../events';
 
     export default {
         mixins: [requests, events],
@@ -119,7 +119,7 @@
                 this.contactIndex = payload.index;
                 this.contact = payload.contact;
                 this.btnText = 'Annuler';
-                return (this.editMode = true);
+                this.editMode = true;
             });
 
             window.events.$on('deleting', payload => {
@@ -143,7 +143,7 @@
                     updated_at: '',
                 };
 
-                return this.editMode = false;
+                this.editMode = false;
             },
 
             showForm() {
@@ -180,7 +180,7 @@
                 }
 
                 this.flash(message);
-                return this.resetForm();
+                this.resetForm();
             },
 
             deleteContacts() {

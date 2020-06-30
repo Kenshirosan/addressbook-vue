@@ -32,7 +32,7 @@
 <script>
     import { mapMutations } from 'vuex';
     import moment from 'moment';
-    import events from '../mixins/globalEvents';
+    import events from '../events';
 
     export default {
         name: 'ContactCard',
