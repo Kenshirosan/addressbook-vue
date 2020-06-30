@@ -142,10 +142,7 @@
                     created_at: new Date(),
                     updated_at: '',
                 };
-
-                if(this.editMode) {
-                    this.editMode = false;
-                }
+                
                 return this.editMode = false;
             },
 
