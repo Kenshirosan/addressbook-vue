@@ -142,17 +142,21 @@
                     created_at: new Date(),
                     updated_at: '',
                 };
-
-                this.editMode = false;
             },
 
             showForm() {
+                if(this.editMode) {
+                    return this.resetForm();
+                }
+
                 this.btnText =
                     this.btnText === 'Ajouter un contact'
                         ? 'Annuler'
                         : 'Ajouter un contact';
+
                 this.isVisible = !this.isVisible;
-                this.getInitialContact();
+
+                return this.getInitialContact();
             },
 
             submitContact() {
