@@ -175,8 +175,6 @@
 
                     this.persistUpdate();
                 } else {
-                    contact.created_at = new Date();
-
                     this.addContact({ contact });
 
                     this.$store.dispatch('setHasContacts');

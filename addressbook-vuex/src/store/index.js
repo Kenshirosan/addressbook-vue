@@ -34,7 +34,7 @@ export default {
                 address: '',
                 city: '',
                 zip: '',
-                created_at: '',
+                created_at: new Date(),
                 updated_at: '',
             };
         },
