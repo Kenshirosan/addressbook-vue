@@ -1,27 +1,31 @@
 <template>
-    <div class="row">
-        <div class="col-md-12">
-            <button
-                type="button"
-                id="js-form-visible"
-                @click.prevent="showForm"
-                class="btn btn-xs btn-primary mb-10"
-            >
-                {{ btnText }}
-            </button>
-            <button
-                v-if="contactsExist"
-                type="button"
-                id="js-clear-storage"
-                class="btn btn-xs btn-danger mb-10"
-                @click="deleteContacts"
-            >
-                Supprimer tous les contacts
-            </button>
-            <h3 v-if="isVisible && ! editMode">Ajouter un contact</h3>
-            <h3 v-if="editMode">Edition</h3>
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <button
+                    type="button"
+                    id="js-form-visible"
+                    @click.prevent="showForm"
+                    class="btn btn-xs btn-primary mb-10"
+                >
+                    {{ btnText }}
+                </button>
+                <button
+                    v-if="contactsExist"
+                    type="button"
+                    id="js-clear-storage"
+                    class="btn btn-xs btn-danger mb-10"
+                    @click="deleteContacts"
+                >
+                    Supprimer tous les contacts
+                </button>
+            </div>
+        </div>
+        <div class="row form-container" :class="classes">
+            <h3 :class="classes" v-if="! editMode">Ajouter un contact</h3>
+            <h3 :class="classes" v-if="editMode">Edition</h3>
             <form
-                v-if="isVisible"
+                :class="classes"
                 @submit.prevent="submitContact"
                 @keydown="resetError"
             >
@@ -112,7 +116,13 @@
             };
         },
 
-        computed: mapState(['contactsExist', 'contact']),
+        computed: {
+            ...mapState(['contactsExist', 'contact']),
+
+            classes() {
+                return this.isVisible ? `is-active` : ``;
+            }
+        },
 
         created() {
             window.events.$on('editing', payload => {
@@ -150,7 +160,6 @@
             },
 
             submitContact() {
-                this.contact.created_at = new Date();
                 this.checkFormFields(this.contact);
 
                 if (this.isValidForm) {
@@ -166,6 +175,8 @@
 
                     this.persistUpdate();
                 } else {
+                    contact.created_at = new Date();
+
                     this.addContact({ contact });
 
                     this.$store.dispatch('setHasContacts');
@@ -224,3 +235,40 @@
         },
     };
 </script>
+
+<style scoped>
+    .form-container {
+        background-color: rgba(0,0,0,0.5);
+        z-index: 5;
+        width: 50vw;
+        height: 50vh;
+        position: absolute;
+        top: calc(50% - 240px);
+        left: calc(50% - 479.5px);
+    }
+    .form-container h3 {
+        position: relative;
+        top: 40px;
+        text-align: center;
+        color: white;
+    }
+
+    .form-container, form {
+        transform: rotateY(90deg);
+        transition: all 400ms ease-in-out 250ms;
+        transform-origin: center;
+    }
+
+    form {
+        position: relative;
+        top: calc(50% - 240px);
+        left: calc(50% - 245px);
+        z-index: 6;
+    }
+    .form-container.is-active, form.is-active, form.is-active h3 {
+        z-index: 1000;
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+
+</style>

@@ -36,6 +36,7 @@
 
     export default {
         name: 'ContactCard',
+
         mixins: [events],
 
         props: {

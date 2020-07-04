@@ -25,19 +25,28 @@
                     @updateContact="updateContact"
                 ></ContactForm>
             </section>
-            <section class="row" v-if="contactsExist">
-                <p class="text-info">
-                    <em>Double cliquez sur un contact pour l'editer</em>
-                </p>
-                <ContactList
-                    v-for="(contact, index) in contacts"
-                    :key="index"
-                    :contact="contact"
-                    :index="index"
-                    :contactsExist="contactsExist"
-                >
-                </ContactList>
+
+<!--            <section class="row" v-if="contactsExist">-->
+<!--                <p class="text-info">-->
+<!--                    <em>Double cliquez sur un contact pour l'editer</em>-->
+<!--                </p>-->
+<!--                <ContactList-->
+<!--                    v-for="(contact, index) in contacts"-->
+<!--                    :key="index"-->
+<!--                    :contact="contact"-->
+<!--                    :index="index"-->
+<!--                >-->
+<!--                </ContactList>-->
+<!--            </section>-->
+
+            <section v-if="contactsExist">
+                <Table
+                    :contacts="contacts"
+                ></Table>
             </section>
+
+
+
             <section class="row" v-else>
                 <h2>Pas de contacts</h2>
             </section>
@@ -49,9 +58,10 @@
 <script>
     import requests from './requests';
     import events from './events';
-    import flash from './components/Flash.vue';
     import ContactForm from './components/ContactForm.vue';
     import ContactList from './components/ContactList.vue';
+    import Table from './components/Table.vue';
+    import flash from './components/Flash.vue';
 
     export default {
         name: 'App',
@@ -59,6 +69,7 @@
         components: {
             ContactForm,
             ContactList,
+            Table,
             flash,
         },
 
