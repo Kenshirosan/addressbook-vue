@@ -5,7 +5,12 @@
 ---
 
 -   CRUD Application using localstorage. Built with [Vue.js](https://vuejs.org/).
--   Parent / Child communication through native and custom events, global events, and props.
+-   Parent / Child communication
+-   props
+-   native and custom events, 
+-   global events,
+-   Computed properties,
+-   Watchers,
 -   Vuex
 
 ## Project setup
