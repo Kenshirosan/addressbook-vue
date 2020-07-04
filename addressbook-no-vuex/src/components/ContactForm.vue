@@ -245,12 +245,13 @@
 
 <style scoped>
     .form-container {
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0,0,0,0.8);
+        border-radius: 10px;
         z-index: 5;
         width: 50vw;
-        height: 50vh;
+        height: 60vh;
         position: absolute;
-        top: calc(50% - 240px);
+        top: calc(50% - 286px);
         left: calc(50% - 479.5px);
     }
     .form-container h3 {
@@ -268,7 +269,7 @@
 
     form {
         position: relative;
-        top: calc(50% - 240px);
+        top: calc(50% - 286px);
         left: calc(50% - 245px);
         z-index: 6;
     }

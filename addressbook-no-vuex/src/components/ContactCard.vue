@@ -13,11 +13,11 @@
             </div>
         </li>
 
-        <li v-else-if="name === 'created_at'">
+        <li v-else-if="name === 'created_at'" class="list-group-item">
             <div v-html="dateCreated"></div>
         </li>
 
-        <li v-else-if="name === 'updated_at' && value !== ''">
+        <li v-else-if="name === 'updated_at' && value !== ''" class="list-group-item">
             <div v-html="dateUpdated"></div>
         </li>
         <li class="list-group-item">

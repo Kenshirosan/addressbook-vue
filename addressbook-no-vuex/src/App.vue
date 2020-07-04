@@ -26,26 +26,24 @@
                 ></ContactForm>
             </section>
 
-<!--            <section class="row" v-if="contactsExist">-->
-<!--                <p class="text-info">-->
-<!--                    <em>Double cliquez sur un contact pour l'editer</em>-->
-<!--                </p>-->
-<!--                <ContactList-->
-<!--                    v-for="(contact, index) in contacts"-->
-<!--                    :key="index"-->
-<!--                    :contact="contact"-->
-<!--                    :index="index"-->
-<!--                >-->
-<!--                </ContactList>-->
-<!--            </section>-->
-
-            <section v-if="contactsExist">
-                <Table
-                    :contacts="contacts"
-                ></Table>
+            <section class="row" v-if="contactsExist">
+                <p class="text-info">
+                    <em>Double cliquez sur un contact pour l'editer</em>
+                </p>
+                <ContactList
+                    v-for="(contact, index) in contacts"
+                    :key="index"
+                    :contact="contact"
+                    :index="index"
+                >
+                </ContactList>
             </section>
 
-
+<!--            <section v-if="contactsExist">-->
+<!--                <Table-->
+<!--                    :contacts="contacts"-->
+<!--                ></Table>-->
+<!--            </section>-->
 
             <section class="row" v-else>
                 <h2>Pas de contacts</h2>
@@ -121,6 +119,9 @@
 </script>
 
 <style>
+    body {
+        background-color: #2c3e50;
+    }
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -147,8 +148,11 @@
     ul {
         list-style-type: none;
         padding: 0;
+        color: white;
+        background-color: transparent;
     }
-    li {
+    li.list-group-item {
+        background-color: rgba(55, 55, 55, 0.5);
         display: inline-block;
         margin: 0 10px;
     }
@@ -157,8 +161,10 @@
     }
 
     li:first-of-type {
-        background-color: lightgreen;
-        color: blue;
+        background-color: rgba(0, 255, 150, 0.1);
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
     }
 
     li:first-of-type:hover {

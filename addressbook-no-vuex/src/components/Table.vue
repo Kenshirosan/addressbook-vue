@@ -1,5 +1,5 @@
 <template>
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-dark table-hover">
         <thead>
         <tr class="table-primary">
             <th>Email</th>
