@@ -14,11 +14,11 @@
         </li>
 
         <li v-else-if="name === 'created_at'" class="list-group-item">
-            <div v-html="dateCreated"></div>
+            <div v-html="created_at"></div>
         </li>
 
         <li v-else-if="name === 'updated_at' && value !== ''" class="list-group-item">
-            <div v-html="dateUpdated"></div>
+            <div v-html="updated_at"></div>
         </li>
 
         <li class="list-group-item">
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-    import { mapMutations } from 'vuex';
+    import { mapState, mapMutations } from 'vuex';
     import moment from 'moment';
     import events from '../events';
 
@@ -39,6 +39,13 @@
 
         mixins: [events],
 
+        data() {
+            return {
+                created_at: '',
+                updated_at: '',
+            }
+        },
+
         props: {
             contact: {},
             index: Number,
@@ -46,24 +53,32 @@
 
         created() {
             moment.locale('fr');
+
+            setInterval(() => {
+                this.refreshCreated();
+                this.refreshUpdated();
+            }, 60000);
         },
 
-        computed: {
-            dateCreated() {
-                return `<p><strong>Creer: </strong>${moment(
-                    this.contact.created_at
-                ).fromNow()}</p>`;
-            },
-
-            dateUpdated() {
-                return `<p><strong>Mis a jour:</strong>${moment(
-                    this.contact.updated_at
-                ).fromNow()}</p>`;
-            },
+        mounted() {
+            this.refreshCreated();
+            this.refreshUpdated();
         },
 
         methods: {
             ...mapMutations(['deleteOneContact']),
+
+            refreshCreated() {
+                this.created_at = `<p><strong>Creer: </strong>${moment(
+                    this.contact.created_at
+                ).fromNow()}</p>`;
+            },
+
+            refreshUpdated() {
+                this.updated_at = `<p><strong>Mis a jour:</strong>${moment(
+                    this.contact.updated_at
+                ).fromNow()}</p>`;
+            },
 
             editing() {
                 this.editingContact({

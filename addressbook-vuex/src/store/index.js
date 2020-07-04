@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export default {
     state: {
         contacts: [],

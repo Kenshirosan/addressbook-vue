@@ -8,11 +8,11 @@
                 {{ value }}
             </td>
             <td v-else-if="name === 'created_at'">
-                <div v-html="dateCreated"></div>
+                <div v-html="created_at"></div>
             </td>
 
             <td v-else-if="name === 'updated_at'">
-                <div v-html="dateUpdated"></div>
+                <div v-html="updated_at"></div>
             </td>
             <td>
                 <button class="btn btn-xs" @click="editing">
@@ -47,21 +47,36 @@
 
         props: ['contact', 'index'],
 
-        created() {
-            moment.locale('fr');
+        data() {
+            return {
+                created_at: '',
+                updated_at: '',
+            }
         },
 
-        computed: {
-            dateCreated() {
-                return moment(this.contact.created_at).fromNow();
-            },
+        created() {
+            moment.locale('fr');
 
-            dateUpdated() {
-                return this.contact.updated_at ? moment(this.contact.updated_at).fromNow() : '';
-            },
+            setInterval(() => {
+                this.refreshCreated();
+                this.refreshUpdated();
+            }, 60000);
+        },
+
+        mounted() {
+            this.refreshCreated();
+            this.refreshUpdated();
         },
 
         methods: {
+            refreshCreated() {
+                this.created_at = moment(this.contact.created_at).fromNow();
+            },
+
+            refreshUpdated() {
+                return this.updated_at =  this.contact.updated_at ? moment(this.contact.updated_at).fromNow() : '';
+            },
+
             editing() {
                 this.editingContact({
                     index: this.$props.index,

@@ -14,11 +14,11 @@
         </li>
 
         <li v-else-if="name === 'created_at'" class="list-group-item">
-            <div v-html="dateCreated"></div>
+            <div v-html="created_at"></div>
         </li>
 
         <li v-else-if="name === 'updated_at' && value !== ''" class="list-group-item">
-            <div v-html="dateUpdated"></div>
+            <div v-html="updated_at"></div>
         </li>
         <li class="list-group-item">
             <button @click="deletingOneContact" class="btn btn-xs btn-danger">
@@ -36,6 +36,13 @@
         name: 'ContactCard',
         mixins: [events],
 
+        data() {
+            return {
+                created_at: '',
+                updated_at: '',
+            }
+        },
+
         props: {
             contact: {},
             index: Number,
@@ -43,23 +50,33 @@
 
         created() {
             moment.locale('fr');
+
+            setInterval(() => {
+                this.refreshCreated();
+                this.refreshUpdated();
+            }, 60000);
         },
 
-        computed: {
-            dateCreated() {
-                return `<p><strong>Creer: </strong>${moment(
+        mounted() {
+            this.refreshCreated();
+            this.refreshUpdated();
+        },
+
+        methods: {
+            refreshCreated() {
+                console.log('creating');
+                this.created_at = `<p><strong>Creer: </strong>${moment(
                     this.contact.created_at
                 ).fromNow()}</p>`;
             },
 
-            dateUpdated() {
-                return `<p><strong>Mis a jour:</strong>${moment(
+            refreshUpdated() {
+                console.log('updating');
+                this.updated_at = `<p><strong>Mis a jour:</strong>${moment(
                     this.contact.updated_at
                 ).fromNow()}</p>`;
             },
-        },
 
-        methods: {
             editing() {
                 this.editingContact({
                     index: this.$props.index,
