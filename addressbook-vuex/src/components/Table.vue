@@ -1,5 +1,5 @@
 <template>
-    <table class="table table-striped table-dark table-hover">
+    <table class="table table-striped table-dark">
         <thead>
         <tr class="table-primary">
             <th>Email</th>
@@ -12,12 +12,14 @@
             <th>Effacer</th>
         </tr>
         </thead>
-        <DataTable
-            v-for="(contact, index) in contacts"
-            :key="index"
-            :index="index"
-            :contact="contact"
-        ></DataTable>
+        <tbody>
+            <DataTable
+                v-for="(contact, index) in contacts"
+                :key="index"
+                :index="index"
+                :contact="contact"
+            ></DataTable>
+        </tbody>
     </table>
 </template>
 

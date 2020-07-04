@@ -249,13 +249,14 @@
 
 <style scoped>
     .form-container {
-        background-color: rgba(0,0,0,0.8);
-        border-radius: 10px;
-        z-index: 5;
+        overflow: hidden;
+        background-color: rgba(24, 28, 58, 0.8);
+        border-radius: 20px;
+        z-index: 100;
         width: 50vw;
         height: 60vh;
         position: absolute;
-        top: calc(50% - 286px);
+        top: calc(50% - 400px);
         left: calc(50% - 479.5px);
     }
     .form-container h3 {
@@ -270,31 +271,32 @@
         overflow: hidden;
         transform-origin: center;
         opacity: 0;
-        transform: rotate(90deg) scale(0.5) translate(100px, -300px) rotateX(90deg);
+        transform: rotate(90deg) scale(0.5) translate(100px, -300px);
         transition: all 500ms cubic-bezier(0, 0.6, 0.35, 1.4);
+
     }
 
     form {
         position: relative;
-        top: calc(50% - 286px);
+        top: calc(50% - 240px);
         left: calc(50% - 235px);
         z-index: 1000;
+    }
+
+    .form-container.is-active, form.is-active, form.is-active h3 {
+        z-index: 1000;
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
     }
 
     input {
         transform: rotateY(90deg);
         transition: all 500ms ease-in-out 250ms;
-        transform-origin: center left;
+        transform-origin: left;
         opacity: 0;
     }
 
     input.is-active {
-        opacity: 1;
-        transform: rotate(0deg) scale(1);
-    }
-
-    .form-container.is-active, form.is-active, form.is-active h3 {
-        z-index: 1000;
         opacity: 1;
         transform: rotate(0deg) scale(1);
     }
