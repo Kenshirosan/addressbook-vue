@@ -76,8 +76,7 @@
         perspective: 1000px;
         opacity: 0;
         transform-origin: bottom left;
-        transform: rotate(90deg) scale(0.5) translate(100px, -300px)
-            rotateX(90deg);
+        transform: rotate(90deg) scale(0.5) translate(100px, -300px) rotateX(90deg);
         transition: all 500ms cubic-bezier(0, 0.6, 0.35, 1.4);
     }
     .alert-section .alert-element .icon {

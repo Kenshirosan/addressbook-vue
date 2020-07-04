@@ -35,6 +35,7 @@
                         <input
                             type="email"
                             class="form-control form-control-lg"
+                            :class="classes"
                             id="email"
                             name="email"
                             v-model="contact.email"
@@ -48,6 +49,7 @@
                         <input
                             type="text"
                             class="form-control form-control-lg"
+                            :class="classes"
                             id="address"
                             name="address"
                             v-model="contact.address"
@@ -61,6 +63,7 @@
                         <input
                             type="text"
                             class="form-control form-control-lg"
+                            :class="classes"
                             name="city"
                             v-model="contact.city"
                             id="city"
@@ -73,6 +76,7 @@
                             type="text"
                             name="zip"
                             class="form-control form-control-lg"
+                            :class="classes"
                             v-model="contact.zip"
                             id="zip"
                             placeholder="12345"
@@ -249,22 +253,39 @@
         top: 40px;
         text-align: center;
         color: white;
+        transition: all 500ms cubic-bezier(0, 0.6, 0.35, 1.4);
     }
 
     .form-container, form {
-        transform: rotateY(90deg);
-        transition: all 400ms ease-in-out 250ms;
+        overflow: hidden;
         transform-origin: center;
+        opacity: 0;
+        transform: rotate(90deg) scale(0.5) translate(100px, -300px) rotateX(90deg);
+        transition: all 500ms cubic-bezier(0, 0.6, 0.35, 1.4);
+
     }
 
     form {
         position: relative;
         top: calc(50% - 240px);
-        left: calc(50% - 286px);
-        z-index: 6;
+        left: calc(50% - 235px);
+        z-index: 1000;
     }
+
     .form-container.is-active, form.is-active, form.is-active h3 {
         z-index: 1000;
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+
+    input {
+        transform: rotateY(90deg);
+        transition: all 500ms ease-in-out 250ms;
+        transform-origin: left;
+        opacity: 0;
+    }
+
+    input.is-active {
         opacity: 1;
         transform: rotate(0deg) scale(1);
     }
