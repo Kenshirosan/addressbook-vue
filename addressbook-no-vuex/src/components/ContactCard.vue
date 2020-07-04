@@ -52,29 +52,39 @@
             moment.locale('fr');
 
             setInterval(() => {
-                this.refreshCreated();
-                this.refreshUpdated();
+                this.refreshDates();
             }, 60000);
         },
 
         mounted() {
-            this.refreshCreated();
-            this.refreshUpdated();
+            this.refreshDates();
+        },
+
+        watch: {
+            contact: {
+                handler: function() {
+                    this.refreshUpdated();
+                },
+                deep: true
+            }
         },
 
         methods: {
             refreshCreated() {
-                console.log('creating');
                 this.created_at = `<p><strong>Creer: </strong>${moment(
                     this.contact.created_at
                 ).fromNow()}</p>`;
             },
 
             refreshUpdated() {
-                console.log('updating');
-                this.updated_at = `<p><strong>Mis a jour:</strong>${moment(
+                this.updated_at = `<p><strong>Mis a jour: </strong>${moment(
                     this.contact.updated_at
                 ).fromNow()}</p>`;
+            },
+
+            refreshDates() {
+                this.refreshCreated();
+                this.refreshUpdated();
             },
 
             editing() {

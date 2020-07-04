@@ -65,6 +65,15 @@
             this.refreshUpdated();
         },
 
+        watch: {
+            contact: {
+                handler: function() {
+                    this.refreshUpdated();
+                },
+                deep: true
+            }
+        },
+
         methods: {
             ...mapMutations(['deleteOneContact']),
 
@@ -75,7 +84,7 @@
             },
 
             refreshUpdated() {
-                this.updated_at = `<p><strong>Mis a jour:</strong>${moment(
+                this.updated_at = `<p><strong>Mis a jour: </strong>${moment(
                     this.contact.updated_at
                 ).fromNow()}</p>`;
             },

@@ -56,23 +56,35 @@
             moment.locale('fr');
 
             setInterval(() => {
-                this.refreshCreated();
-                this.refreshUpdated();
+                this.refreshDates();
             }, 60000);
         },
 
         mounted() {
-            this.refreshCreated();
-            this.refreshUpdated();
+            this.refreshDates();
+        },
+
+        watch: {
+            contact: {
+                handler: function() {
+                    this.refreshUpdated();
+                },
+                deep: true
+            }
         },
 
         methods: {
             refreshCreated() {
-                this.created_at = moment(this.contact.created_at).fromNow();
+                return this.created_at = moment(this.contact.created_at).fromNow();
             },
 
             refreshUpdated() {
                 return this.updated_at =  this.contact.updated_at ? moment(this.contact.updated_at).fromNow() : '';
+            },
+
+            refreshDates() {
+                this.refreshCreated();
+                this.refreshUpdated();
             },
 
             editing() {
