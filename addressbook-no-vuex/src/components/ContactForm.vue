@@ -11,6 +11,7 @@
                     {{ btnText }}
                 </button>
                 <button
+                    v-if="contactsExist"
                     type="button"
                     id="js-clear-storage"
                     class="btn btn-xs btn-danger mb-10"
@@ -111,6 +112,8 @@
 
         name: 'ContactForm',
 
+        props: ['contacts'],
+
         data() {
             return {
                 error: '',
@@ -141,6 +144,10 @@
         computed: {
             classes() {
                 return this.isVisible ? `is-active` : ``;
+            },
+
+            contactsExist() {
+                return this.contacts.length > 0;
             }
         },
 

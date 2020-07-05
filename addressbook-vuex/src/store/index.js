@@ -58,7 +58,7 @@ export default {
         deleteOneContact({ contacts, key }, { index }) {
             contacts.splice(index, 1);
 
-            // return localStorage.setItem(key, JSON.stringify(contacts));
+            return localStorage.setItem(key, JSON.stringify(contacts));
         },
 
         deleteContactsFromLocalStorage({ contacts }, key) {

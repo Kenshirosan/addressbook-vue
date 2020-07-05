@@ -58,6 +58,10 @@
 
         mounted() {
             this.refreshDates();
+
+            setTimeout(() => {
+                this.$el.classList.add('is-active');
+            }, 500);
         },
 
         watch: {
@@ -100,3 +104,24 @@
         },
     };
 </script>
+
+<style>
+    ul {
+        transform: translateY(-2000px) scale(2);
+        opacity: 0;
+        transition: 500ms ease-in;
+    }
+
+    ul.is-active {
+        opacity: 1;
+        transform: translateX(0px) scale(1);
+    }
+
+    li:nth-child(odd) {
+        transform: rotate(1deg);
+    }
+
+    li:nth-child(even) {
+        transform: rotate(-1deg);
+    }
+</style>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="app">
         <header class="mb-5-percent">
             <nav class="navbar navbar-dark bg-dark">
                 <div class="container-fluid">
@@ -23,6 +23,7 @@
                 <ContactForm
                     @contactsEmpty="contactsEmpty"
                     @updateContact="updateContact"
+                    :contacts="contacts"
                 ></ContactForm>
             </section>
 
@@ -88,6 +89,12 @@
             this.getContactsFromLocalStorage(this.key);
         },
 
+        mounted() {
+            setTimeout(() => {
+                this.$el.classList.add('is-active');
+            }, 100);
+        },
+
         methods: {
             newContact(contact) {
                 this.contacts.push(contact);
@@ -98,7 +105,7 @@
             contactsEmpty() {
                 this.contacts = [];
 
-                this.deleteContactsFromLocalStorage(this.key);
+                // this.deleteContactsFromLocalStorage(this.key);
 
                 this.flash('Contacts successfully deleted', 'primary');
             },
@@ -121,14 +128,20 @@
 <style>
     body {
         background-color: #2c3e50;
+        /*overflow: hidden;*/
     }
-    #app {
+    .app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        text-align: center;
         color: #2c3e50;
-        margin-top: 60px;
+        transition: all 250ms ease-in;
+        margin-top: 200px;
+        opacity: 0;
+    }
+    .app.is-active {
+        opacity: 1;
+        margin-top: 0;
     }
     .mb-10 {
         margin-bottom: 10px;
@@ -142,8 +155,9 @@
         margin-top: 10px;
     }
 
-    h3 {
+    h3, h2 {
         margin: 40px 0 0;
+        color: white;
     }
     ul {
         list-style-type: none;

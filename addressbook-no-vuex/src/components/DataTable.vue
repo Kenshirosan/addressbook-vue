@@ -62,11 +62,16 @@
 
         mounted() {
             this.refreshDates();
+
+            setTimeout(() => {
+                this.$el.classList.add('is-active');
+            }, 100);
         },
 
         watch: {
             contact: {
                 handler: function() {
+                    this.refreshCreated();
                     this.refreshUpdated();
                 },
                 deep: true
@@ -102,3 +107,29 @@
 
     }
 </script>
+
+<style scoped>
+    td {
+        border: none;
+    }
+
+    tr {
+        opacity: 0;
+        transform: translateX(-200px);
+        transition: all 500ms ease-in;
+    }
+
+    tr.is-active {
+        transform-origin: left;
+        opacity: 1;
+    }
+
+    tr.is-active:nth-child(even) {
+        transform: skew(5deg);
+    }
+
+    tr.is-active:nth-child(odd) {
+        transform: skew(-5deg);
+    }
+
+</style>

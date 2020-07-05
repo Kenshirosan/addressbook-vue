@@ -32,5 +32,29 @@
         components: { DataTable },
 
         props: ['contacts'],
+
+        mounted() {
+            setTimeout(() => {
+                document.querySelector('tbody').classList.add('is-active');
+            }, 100);
+        }
     }
 </script>
+
+<style scoped>
+    table {
+        overflow: hidden;
+    }
+    tbody {
+        overflow: hidden;
+        transform: translateX(-200px);
+        transform-origin: left;
+        opacity: 0;
+        transition: all 100ms ease-in-out 350ms;
+    }
+
+    tbody.is-active {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+</style>
