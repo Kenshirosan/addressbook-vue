@@ -8,7 +8,7 @@
         >
             <div>
                 <p>
-                    <strong>{{ name }}: </strong>
+                    <strong>{{ name | ucfirst }}: </strong>
                     <span v-if="name === 'city'">{{ value | ucfirst}}</span>
                     <span v-else> {{ value }}</span>
                 </p>
@@ -137,5 +137,13 @@
 
     li:nth-child(even) {
         transform: rotate(-1deg);
+    }
+
+    li:nth-child(odd) p strong, li:nth-child(odd) div {
+        transform: rotate(-1deg);
+    }
+
+    li:nth-child(even) p strong, li:nth-child(even) div {
+        transform: rotate(1deg);
     }
 </style>

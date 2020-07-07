@@ -4,10 +4,10 @@
             v-for="(value, name) of contact"
             v-if="name !== 'updated_at' && name !== 'created_at'"
         >
-            <span v-if="name === 'city'">{{ value | ucfirst }}</span>
-            <span v-else>{{ value }}</span>
-
+            <div v-if="name === 'city'">{{ value | ucfirst }}</div>
+            <div v-else>{{ value }}</div>
         </td>
+
         <td v-else-if="name === 'created_at'">
             <div v-html="created_at"></div>
         </td>
@@ -139,11 +139,19 @@
     }
 
     tr.is-active:nth-child(even) {
-        transform: skew(5deg);
+        transform: skew(15deg);
     }
 
     tr.is-active:nth-child(odd) {
-        transform: skew(-5deg);
+        transform: skew(-15deg);
+    }
+
+    tr.is-active:nth-child(even) div, tr.is-active:nth-child(even) button {
+        transform: skew(-15deg);
+    }
+
+    tr.is-active:nth-child(odd) div, tr.is-active:nth-child(odd) button {
+        transform: skew(15deg);
     }
 
 </style>
