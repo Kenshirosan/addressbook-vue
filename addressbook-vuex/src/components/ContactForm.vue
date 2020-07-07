@@ -21,8 +21,8 @@
                 </button>
             </div>
         </div>
-        <div class="row form-container" :class="classes">
-            <h3 :class="classes" v-if="! editMode">Ajouter un contact</h3>
+        <div class="form-container" :class="classes">
+            <h3 :class="classes" v-if="!editMode">Ajouter un contact</h3>
             <h3 :class="classes" v-if="editMode">Edition</h3>
             <form
                 :class="classes"
@@ -125,7 +125,7 @@
 
             classes() {
                 return this.isVisible ? `is-active` : ``;
-            }
+            },
         },
 
         created() {
@@ -149,7 +149,7 @@
             ]),
 
             showForm() {
-                if(this.editMode) {
+                if (this.editMode) {
                     return this.resetForm();
                 }
 
@@ -258,13 +258,13 @@
         transition: all 500ms cubic-bezier(0, 0.6, 0.35, 1.4);
     }
 
-    .form-container, form {
+    .form-container,
+    form {
         overflow: hidden;
         transform-origin: center;
         opacity: 0;
         transform: rotate(90deg) scale(0.5) translate(100px, -300px);
         transition: all 500ms cubic-bezier(0, 0.6, 0.35, 1.4);
-
     }
 
     form {
@@ -274,7 +274,9 @@
         z-index: 1000;
     }
 
-    .form-container.is-active, form.is-active, form.is-active h3 {
+    .form-container.is-active,
+    form.is-active,
+    form.is-active h3 {
         z-index: 1000;
         opacity: 1;
         transform: rotate(0deg) scale(1);

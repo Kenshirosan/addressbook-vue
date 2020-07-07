@@ -8,7 +8,9 @@
         >
             <div>
                 <p>
-                    <strong>{{ name }}:</strong> {{ value }}
+                    <strong>{{ name }}: </strong>
+                    <span v-if="name === 'city'">{{ value | ucfirst}}</span>
+                    <span v-else> {{ value }}</span>
                 </p>
             </div>
         </li>
@@ -75,6 +77,12 @@
                     this.refreshUpdated();
                 },
                 deep: true
+            }
+        },
+
+        filters: {
+            ucfirst(string) {
+                return string.charAt(0).toUpperCase() + string.substring(1);
             }
         },
 

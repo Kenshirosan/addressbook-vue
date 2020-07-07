@@ -7,7 +7,10 @@
             @dblclick="editing"
         >
             <div>
-                <p>
+                <p v-if="name='city'">
+                    <strong>{{ name }}:</strong> {{ value | ucfirst }}
+                </p>
+                <p v-else>
                     <strong>{{ name }}:</strong> {{ value }}
                 </p>
             </div>
@@ -70,6 +73,12 @@
                     this.refreshUpdated();
                 },
                 deep: true
+            }
+        },
+
+        filters: {
+            ucfirst(string) {
+                return string.charAt(0).toUpperCase() + string.substring(1);
             }
         },
 

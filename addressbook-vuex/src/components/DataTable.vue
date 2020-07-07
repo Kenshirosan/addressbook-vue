@@ -4,7 +4,9 @@
             v-for="(value, name) of contact"
             v-if="name !== 'updated_at' && name !== 'created_at'"
         >
-            {{ value }}
+            <span v-if="name === 'city'">{{ value | ucfirst }}</span>
+            <span v-else>{{ value }}</span>
+
         </td>
         <td v-else-if="name === 'created_at'">
             <div v-html="created_at"></div>
@@ -79,6 +81,12 @@
             }
         },
 
+        filters: {
+            ucfirst(string) {
+                return string.charAt(0).toUpperCase() + string.substring(1);
+            }
+        },
+
         methods: {
             ...mapMutations(['deleteOneContact']),
 
@@ -87,7 +95,7 @@
             },
 
             refreshUpdated() {
-                return this.updated_at =  this.contact.updated_at ? moment(this.contact.updated_at).fromNow() : '';
+                return this.updated_at = this.contact.updated_at ? moment(this.contact.updated_at).fromNow() : '';
             },
 
             refreshDates() {
