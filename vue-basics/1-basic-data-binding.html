@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <link rel="stylesheet"
+          href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- L'id app sert d'ancre a vuejs, on lui donne le nom qu'on veut, app ou root sont bien adaptes.   -->
+    <div id="app" class="container">
+        <h1>Basic Data Binding</h1>
+        <form action="" method="POST">
+            <!--  la directive v-model dediee aux input et 'form control'     -->
+            <label for="message">Taper dans le formulaire</label>
+            <input type="text" id="message" v-model="message"></input>
+        </form>
+
+        <!--  la syntaxe moustache permet d'acceder aux proprietes de l'objet data -->
+        <p>{{ message }}</p>
+        <!--  la directive v-text permet d'acceder aux proprietes de l'objet data -->
+        <p v-text="message"></p>
+
+        <!--   Pour le HTML, la directive v-html -->
+        <p>{{ html }}</p>
+        <p v-text="html"></p>
+        <p v-html="html"></p>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            data() {
+                return {
+                    message: 'testing vue data binding',
+                    html: '<p>test awesome vue</p>'
+                }
+            }
+        }).$mount('#app');
+    </script>
+
+</body>
+</html>

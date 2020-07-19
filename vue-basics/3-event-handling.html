@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <link rel="stylesheet"
+          href="css/style.css">
+    <title>Vue instance</title>
+</head>
+<body>
+    <div id="app" class="container">
+        <h1>Event Handling: v-on:click/@click, v-on:submit/@submit, modifier: .prevent</h1>
+        <div class="form-group">
+            <!-- l'event submit avec le modifier prevent ( e.preventDefault() )-->
+            <!-- Execute un fonction quand on 'submit' -->
+            <form action="" @submit.prevent="createContact">
+                <label for="name">Name</label>
+                <input type="text" v-model="name" id="name">
+
+                <label for="email">Email</label>
+                <input type="email" v-model="email" id="email">
+
+                <label for="phone">Phone</label>
+                <input type="tel" v-model="phone" id="phone">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- Execute un fonction on 'click'        -->
+        <button @click="doSomething">Cliquer</button>
+        <!-- Avec le modifier .prevent       -->
+        <a href="test.php" v-on:click.prevent="interceptEvent">Lien</a>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        let data = {
+            message: 'Hello World',
+            name: '',
+            email: '',
+            phone: ''
+        };
+
+        new Vue({
+            el: '#app',
+            data: data,
+            // L'objet methods permet d'ecrire des fonctions
+            // Ces fonctions sont locales dans le contexte d'un 'component'
+            methods: {
+                createContact() {
+                    const contact = {
+                        name: this.name,
+                        email: this.email,
+                        phone: this.phone
+                    };
+
+                    console.log(contact);
+                },
+
+                doSomething() {
+                    console.log('bouton clique');
+                },
+
+                interceptEvent() {
+                    console.log('clique a href');
+                }
+            }
+
+        });
+    </script>
+
+</body>
+</html>

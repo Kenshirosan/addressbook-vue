@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    background-color: #60FECF;
+    color: #501fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    background-color: #501fff;
+    padding: 1em;
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+    float: left;
+    margin-right: 15px;
+}
+
+a {
+    color: #6DB9FC;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+a span {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 700;
+}
+
+.content {
+    margin-top: 30px;
+    clear: left;
+}
+
+.container {
+    line-height: 1.6;
+    width: 1100px;
+    margin: auto;
+}
+
+ol li:first-child span {
+    display: block;
+}
+
+li {
+    color: #576EE6;
+}
+
+ol li:nth-child(3) span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    height: 50px;
+    text-align: left;
+}
+
+table, th, td {
+    border: 1px solid black;
+    color: red;
+}
+
+th, td {
+    padding: 1em;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 2em;
+}
+
+.form-group form input {
+    width: 100%;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+button, input.btn {
+    color: white;
+    font-size: 1em;
+    font-weight: 700;
+    padding: 1em;
+    border: 0.5px outset lightgreen;
+    background-color: fuchsia;
+    transition: background-color 300ms ease;
+}
+
+button:hover {
+    background-color: #ffa1ff;
+    border: 0.5px inset chartreuse;
+}
