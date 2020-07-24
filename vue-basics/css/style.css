@@ -7,6 +7,14 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.mt-1em {
+    margin-top: 1em;
+}
+
+h1 {
+    color: white;
+}
+
 .header {
     background-color: #501fff;
     padding: 1em;
@@ -29,6 +37,48 @@ a span {
     display: inline-block;
     vertical-align: middle;
     font-weight: 700;
+}
+
+section {
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+}
+
+section.active {
+    opacity: 1;
+    animation: move-to-right 350ms ease-out;
+}
+
+section.inactive {
+    opacity: 0;
+    animation: move-out-screen 350ms ease-out;
+}
+
+@keyframes move-to-right {
+    from {
+        transform: translateX(-100%)skew(-50deg);
+    }
+    50% {
+        transform: translateX(10%) skew(-25deg);
+    }
+    80% {
+        transform: skew(5deg);
+    }
+    95% {
+        transform: skew(-5deg);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes move-out-screen {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(200%)skew(-50deg);
+    }
 }
 
 .content {
@@ -100,4 +150,19 @@ button, input.btn {
 button:hover {
     background-color: #ffa1ff;
     border: 0.5px inset chartreuse;
+}
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 1em;
+    text-align: center;
+    background-color: #501fff;
+}
+
+.footer a {
+    color: white;
 }

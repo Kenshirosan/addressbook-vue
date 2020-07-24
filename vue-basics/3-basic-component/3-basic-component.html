@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="../css/style.css" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="../img/icon/logo.png"
+        />
+        <title>Component Basics</title>
+    </head>
+    <body>
+        <div id="app">
+            <header-template></header-template>
+            <!--                          https://vuejs.org/v2/guide/components.html                           -->
+            <div class="container">
+                <!-- Vue.js offre la possibilite de creer des 'component' reutilisable,
+                c'est ici qu'on trouve la force de ce type de framework.
+                Un composant Vue.js est fait de markup html et de javascript.
+                Il offre les meme possibilite qu'une instance de Vue.(methodes, data object etc etc)
+                Ce composant est declare dans le fichier TaskList.js
+                Vous avez surement vu le header et le footer depuis le debut..
+             -->
+                <task-list></task-list>
+
+                <footer-template></footer-template>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="module">
+            import HeaderTemplate from '../components/header.js';
+            import FooterTemplate from '../components/footer.js';
+
+            // Notez la difference entre le nom des imports et le nom du composant dans le html et ls js
+            // Les explications: https://vuejs.org/v2/guide/components-registration.html
+            import TaskList from './TaskList.js'; // Importer le composant
+
+            new Vue({
+                el: '#app',
+                data: {},
+            });
+        </script>
+    </body>
+</html>
