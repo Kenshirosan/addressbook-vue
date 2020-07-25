@@ -11,29 +11,25 @@
             sizes="96x96"
             href="../img/icon/logo.png"
         />
-        <title>List Rendering</title>
+        <title>Computed Properties</title>
     </head>
     <body>
         <div id="app">
             <header-template></header-template>
-
             <div class="container">
-                <h1>Exercice v-for</h1>
-                <p>
-                    Creer un objet data contenant un tableau simple et un
-                    tableau compose d'objet
-                </p>
-                <p>
-                    Afficher les elements de l'objet data dans des listes et
-                    tables
-                </p>
+                <h1>Computed Properties</h1>
+                <section class="active">
+                    <p>
+                        Reprendre l'exemple precedent et ajouter un bouton a
+                        cote des taches, quand on clique ce bouton la tache doit
+                        apparaitre dans les taches effectuees, et disparaitre
+                        des taches non effectuees.
+                    </p>
+                </section>
             </div>
-
             <footer-template></footer-template>
         </div>
-
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
         <script type="module">
             import HeaderTemplate from '../components/header.js';
             import FooterTemplate from '../components/footer.js';
@@ -41,8 +37,9 @@
             new Vue({
                 el: '#app',
                 components: { HeaderTemplate, FooterTemplate },
-                // <!-- Creer un objet data contenant un tableau simple et un tableau compose d'objet  -->
-                // <!-- Afficher les elements de l'objet data dans des listes et tables   -->
+                data() {
+                    return {};
+                },
             });
         </script>
     </body>

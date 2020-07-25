@@ -18,6 +18,7 @@
             <header-template></header-template>
             <!--                          https://vuejs.org/v2/guide/components.html                           -->
             <div class="container">
+                <h1>Exemple de composant simple.</h1>
                 <!-- Vue.js offre la possibilite de creer des 'component' reutilisable,
                 c'est ici qu'on trouve la force de ce type de framework.
                 Un composant Vue.js est fait de markup html et de javascript.
@@ -26,9 +27,8 @@
                 Vous avez surement vu le header et le footer depuis le debut..
              -->
                 <task-list></task-list>
-
-                <footer-template></footer-template>
             </div>
+            <footer-template></footer-template>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -42,6 +42,7 @@
 
             new Vue({
                 el: '#app',
+                components: { HeaderTemplate, FooterTemplate },
                 data: {},
             });
         </script>

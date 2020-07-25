@@ -159,10 +159,11 @@ button:hover {
     bottom: 0;
     width: 100%;
     padding: 1em;
-    text-align: center;
     background-color: #501fff;
+    margin-top: 1em;
 }
 
 .footer a {
+    margin-left: calc(50% - 63.5px);
     color: white;
 }

@@ -11,28 +11,30 @@
             sizes="96x96"
             href="../img/icon/logo.png"
         />
-        <title>Vue Event Handling</title>
+        <title>Component Basics</title>
     </head>
     <body>
         <div id="app">
             <header-template></header-template>
+            <!--                          https://vuejs.org/v2/guide/components.html                           -->
             <div class="container">
-                <!--    Creer un composant et tester les events native et custom avec et sans data.   -->
+                <h1>Creer un composant et l'afficher</h1>
+                <!--                          Ajouter le composant ici                           -->
             </div>
             <footer-template></footer-template>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
         <script type="module">
             import HeaderTemplate from '../components/header.js';
             import FooterTemplate from '../components/footer.js';
+            // importer le composant.
 
             new Vue({
                 el: '#app',
-                data() {
-                    return {};
-                },
+                //Ajouter le nom du composant a l'objet components.
+                components: { HeaderTemplate, FooterTemplate },
+                data: {},
             });
         </script>
     </body>

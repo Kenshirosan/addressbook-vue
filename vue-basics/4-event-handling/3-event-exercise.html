@@ -11,24 +11,19 @@
             sizes="96x96"
             href="../img/icon/logo.png"
         />
-        <title>List Rendering</title>
+        <title>Vue Event Handling</title>
     </head>
     <body>
         <div id="app">
             <header-template></header-template>
-
             <div class="container">
-                <h1>Exercice v-for</h1>
+                <h1>Event Handling</h1>
                 <p>
-                    Creer un objet data contenant un tableau simple et un
-                    tableau compose d'objet
+                    Creer un composant et tester les events native et custom
+                    avec et sans data.
                 </p>
-                <p>
-                    Afficher les elements de l'objet data dans des listes et
-                    tables
-                </p>
+                <!--    Creer un composant et tester les events native et custom avec et sans data.   -->
             </div>
-
             <footer-template></footer-template>
         </div>
 
@@ -37,12 +32,14 @@
         <script type="module">
             import HeaderTemplate from '../components/header.js';
             import FooterTemplate from '../components/footer.js';
-
+            // Importer le composant
             new Vue({
                 el: '#app',
+                //Ajouter le nom du composant a l'objet components.
                 components: { HeaderTemplate, FooterTemplate },
-                // <!-- Creer un objet data contenant un tableau simple et un tableau compose d'objet  -->
-                // <!-- Afficher les elements de l'objet data dans des listes et tables   -->
+                data() {
+                    return {};
+                },
             });
         </script>
     </body>

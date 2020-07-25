@@ -11,29 +11,33 @@
             sizes="96x96"
             href="../img/icon/logo.png"
         />
-        <title>List Rendering</title>
+        <title>Component Basics</title>
     </head>
     <body>
         <div id="app">
             <header-template></header-template>
-
             <div class="container">
-                <h1>Exercice v-for</h1>
+                <h1>Directives v-if, v-else et v-else-if</h1>
                 <p>
-                    Creer un objet data contenant un tableau simple et un
-                    tableau compose d'objet
+                    equivalent de if, else if, else, pas besoin d'explications
                 </p>
-                <p>
-                    Afficher les elements de l'objet data dans des listes et
-                    tables
-                </p>
+                <ul>
+                    <li v-for="person in persons" v-if="person.age === 18">
+                        v-if l'age est egal a 18: {{ person.name}}
+                    </li>
+                    <li v-else-if="person.age > 10 && person.age < 35">
+                        v-else-if age superieur 10 et inferieur a 35:{{
+                        person.name}}
+                    </li>
+                    <li v-else>
+                        v-else ... {{ person.name}}
+                    </li>
+                </ul>
             </div>
-
             <footer-template></footer-template>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
         <script type="module">
             import HeaderTemplate from '../components/header.js';
             import FooterTemplate from '../components/footer.js';
@@ -41,8 +45,13 @@
             new Vue({
                 el: '#app',
                 components: { HeaderTemplate, FooterTemplate },
-                // <!-- Creer un objet data contenant un tableau simple et un tableau compose d'objet  -->
-                // <!-- Afficher les elements de l'objet data dans des listes et tables   -->
+                data: {
+                    persons: [
+                        { name: 'John Doe', age: 18 },
+                        { name: 'Jack Doe', age: 30 },
+                        { name: 'Jane Doe', age: 45 },
+                    ],
+                },
             });
         </script>
     </body>

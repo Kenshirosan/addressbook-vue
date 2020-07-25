@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="../css/style.css" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="../img/icon/logo.png"
+        />
+        <title>Computed Properties</title>
+    </head>
+    <body>
+        <div id="app">
+            <header-template></header-template>
+            <div class="container">
+                <h1>Computed Properties</h1>
+                <section :class="classes">
+                    <p>
+                        Une 'Computed Property' est un objet qui contient des
+                        methodes
+                    </p>
+                    <p>
+                        C'est l'equivalent du Data Object mais dynamique
+                    </p>
+                    <p>
+                        Une 'Computed Property' est calculee de maniere
+                        dynamique en fonction de la valeur d'autres proprietes
+                    </p>
+                    <p>
+                        Ici, on ajoute une classe en se basant sur la valeur de
+                        la propriete isVisible.
+                    </p>
+                </section>
+                <button @click="isVisible = !isVisible">Cliquer ici</button>
+
+                <h2>Filter une liste de taches selon leur statut</h2>
+                <h3>Tasks Done</h3>
+                <ul>
+                    <li
+                        v-for="task in tasksDone"
+                        v-text="task.description"
+                    ></li>
+                </ul>
+                <h3>Tasks Not Done</h3>
+                <ul>
+                    <li
+                        v-for="task in tasksNotDone"
+                        v-text="task.description"
+                    ></li>
+                </ul>
+            </div>
+            <footer-template></footer-template>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="module">
+            import HeaderTemplate from '../components/header.js';
+            import FooterTemplate from '../components/footer.js';
+
+            new Vue({
+                el: '#app',
+                components: { HeaderTemplate, FooterTemplate },
+                data() {
+                    return {
+                        isVisible: true,
+                        tasks: [
+                            { description: 'Faire des courses', done: true },
+                            { description: 'Reviser', done: false },
+                            { description: 'Lire mes emails', done: false },
+                            { description: 'Faire le menage', done: true },
+                        ],
+                    };
+                },
+
+                computed: {
+                    //  applique une classe en fonction de la valeur de isVisible
+                    classes() {
+                        return this.isVisible ? 'active' : 'inactive';
+                    },
+
+                    // Filtrage des tasks en fonction du statut
+                    tasksNotDone() {
+                        return this.tasks.filter(task => !task.done);
+                    },
+
+                    tasksDone() {
+                        return this.tasks.filter(task => task.done);
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

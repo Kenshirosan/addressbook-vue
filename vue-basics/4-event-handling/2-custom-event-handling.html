@@ -11,38 +11,44 @@
             sizes="96x96"
             href="../img/icon/logo.png"
         />
-        <title>List Rendering</title>
+        <title>Event Handling</title>
     </head>
     <body>
         <div id="app">
             <header-template></header-template>
-
             <div class="container">
-                <h1>Exercice v-for</h1>
-                <p>
-                    Creer un objet data contenant un tableau simple et un
-                    tableau compose d'objet
-                </p>
-                <p>
-                    Afficher les elements de l'objet data dans des listes et
-                    tables
-                </p>
+                <h1>Custom Event Handling</h1>
+                <custom-event-handling
+                    @customevent="receivedEvent"
+                    @customeventwithpayload="receivedEventWithPayload"
+                ></custom-event-handling>
             </div>
-
             <footer-template></footer-template>
         </div>
-
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
         <script type="module">
             import HeaderTemplate from '../components/header.js';
             import FooterTemplate from '../components/footer.js';
 
+            import CustomEventHandling from './CustomEventHandling.js';
+
             new Vue({
                 el: '#app',
                 components: { HeaderTemplate, FooterTemplate },
-                // <!-- Creer un objet data contenant un tableau simple et un tableau compose d'objet  -->
-                // <!-- Afficher les elements de l'objet data dans des listes et tables   -->
+                data() {
+                    return {};
+                },
+                methods: {
+                    //Sur le composant, on ecoute l'event avec le @customevent, ou v-on:customevent
+                    // et on appelle cette methode.
+                    receivedEvent() {
+                        console.log('Event Received');
+                    },
+                    receivedEventWithPayload(payload) {
+                        console.log('Event Received, Payload:');
+                        console.log(payload);
+                    },
+                },
             });
         </script>
     </body>

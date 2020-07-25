@@ -16,9 +16,13 @@
     <body>
         <div id="app">
             <header-template></header-template>
-
             <div class="container">
                 <h1>Exercice v-model</h1>
+                <p>
+                    Quand on remplit les champs du formulaire, le texte de
+                    chaque champ doit s'afficer dans un span correspondant en
+                    dessous du formulaire
+                </p>
                 <div class="form-group">
                     <form action="" method="POST">
                         <label for="email">Email</label>
@@ -44,9 +48,10 @@
 
             // <!-- Creer un objet data   -->
             // <!-- Relier l'objet data avec le formulaire   -->
-            // <!-- Afficher le contenu des inputs dans les span en correspondant   -->
+            // <!-- Afficher le contenu des inputs dans les span correspondants   -->
             new Vue({
                 el: '#app',
+                components: { HeaderTemplate, FooterTemplate },
             });
         </script>
     </body>
