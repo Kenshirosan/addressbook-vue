@@ -79,9 +79,14 @@ article p strong {
     text-decoration: underline;
 }
 
+.radicalError {
+    text-transform: uppercase;
+}
+
 article img {
     display: block;
     margin-bottom: 1rem;
+    max-width: 100%;
 }
 
 .footer {

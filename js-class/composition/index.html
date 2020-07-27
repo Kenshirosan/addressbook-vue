@@ -24,6 +24,179 @@
                     Reprenons notre classe Error et creeons un class Form qui
                     representera un formulaire.
                 </p>
+                <pre><!--
+                 --><code class="hljs js"><!--
+                     -->class Form {
+<!--                 -->    validate(fields) {
+<!--                 -->        for (let field of fields) {
+<!--                 -->            if (!field.value) {
+<!--                 -->                //Erreur
+<!--                 -->            }
+<!--                 -->        }
+<!--                 -->    }
+<!--                 -->}
+<!--                 -->
+<!--                 -->export default Form;
+<!--             --></code><!--
+             --></pre>
+                <p>
+                    Cette classe doit s'occuper de la validation des champs des
+                    formulaires. Elle a donc besoin de methodes pour valider les
+                    erreurs.
+                </p>
+                <p>
+                    Naturellement, on pense a la classe Error et on se dit
+                    qu'avec l'heritage, on pourrait faire fonctionner tout ca.
+                </p>
+                <div class="radicalError">
+                    <p>
+                        <strong><em>C'est une erreur radicale:</em></strong>
+                    </p>
+                    <p>
+                        Si on etends la class Error avec la class Form, la
+                        classe Form sera une instance de Error
+                    </p>
+                    <p>
+                        Autrement dit: la classe Form sera une erreur, alors que
+                        cette classe represente un formulaire
+                    </p>
+                    <p>
+                        Si le formulaire est mal rempli, il y aura des erreurs,
+                        mais ce sera toujours un formulaire.
+                    </p>
+                    <p>
+                        le formulaire peut comporter des erreurs, mais il ne
+                        sera jamais une erreur.
+                    </p>
+                </div>
+                <p>Alors, comment faire avec nos deux classes ?</p>
+                <h3>La composition:</h3>
+                <p>
+                    On vient de voir de maniere theorique que la classe Form a
+                    besoin de la class Error pour fonctionner, passons a la
+                    pratique.
+                </p>
+                <p>
+                    On a besoin d'un instance de la class Form et d'un instance
+                    de la class Error
+                </p>
+                <pre><!--
+                 --><code class="hljs js"><!--
+                     -->const error = new CustomErrors();
+<!--                 -->const form = new Form();
+<!--                 -->
+<!--                 -->//Simule un formulaire.
+<!--                 -->const fields = [];
+<!--                 -->const input = document.createElement('input');
+<!--                 -->const input2 = document.createElement('input');
+<!--                 -->input.name = 'name';
+<!--                 -->input.value = '';
+<!--                 -->input2.name = 'email';
+<!--                 -->input2.value = 'john@doe.com'
+<!--                 -->fields.push(input);
+<!--                 -->fields.push(input2);
+<!--                 -->
+<!--                 -->
+<!--             --></code><!--
+             --></pre>
+                <p>Essayons maintenant de faire fonctionner de code</p>
+                <pre><!--
+                 --><code class="hljs js"><!--
+                     -->
+<!--                 -->class Form {
+<!--                 -->    validate(fields) {
+<!--                 -->        for (let field of fields) {
+<!--                 -->            if (!field.value) {
+<!--                 -->                // Gestion des erreurs avec notre class Error
+<!--                 -->                error.name = 'Form invalide'
+<!--                 -->                error.message = `Le champ ${field.name} est invalide.`
+<!--                 -->            }
+<!--                 -->        }
+<!--                 -->    }
+<!--                 -->}
+<!--             --></code><!--
+             --></pre>
+                <pre><!--
+                 --><code class="hljs js"><!--
+                     -->const error = new CustomErrors();
+<!--                 -->const form = new Form();
+<!--                 -->
+<!--                 -->//Simule un formulaire.
+<!--                 -->const fields = [];
+<!--                 -->const input = document.createElement('input');
+<!--                 -->const input2 = document.createElement('input');
+<!--                 -->input.name = 'name';
+<!--                 -->input.value = '';
+<!--                 -->input2.name = 'email';
+<!--                 -->input2.value = 'john@doe.com'
+<!--                 -->fields.push(input);
+<!--                 -->fields.push(input2);
+<!--                 -->
+<!--                 -->// On envoie les donnees a notre classe Form
+<!--                 -->const results = form.validate(fields);
+<!--                 -->console.log(results);
+<!--             --></code><!--
+             --></pre>
+                <p>
+                    Voici le resultat:
+                    <img src="img/formerror.png" alt="image d'erreur" />
+                    La classe Form n'est pas au courant qu'elle peut comporter
+                    des erreurs. Remedions y:
+                </p>
+                <pre><!--
+                 --><code class="hljs js"><!--
+                     -->
+<!--                 -->class Form {
+<!--                 -->    // On injecte une instance d'erreur dans le constructeur
+<!--                 -->    constructor(error) {
+<!--                 -->        this.error = error;
+<!--                 -->    }
+<!--                 -->
+<!--                 -->    validate(fields) {
+<!--                 -->        for (let field of fields) {
+<!--                 -->            if (!field.value) {
+<!--                 -->                // Gestion des erreurs avec notre class Error
+ <!--                -->               // La class a maintenant une propriete error, donc `this` &#x1F609;
+<!--                 -->                this.error.name = 'Form invalide'
+<!--                 -->                this.error.message = `Le champ ${field.name} est invalide.`
+<!--                 -->            }
+<!--                 -->        }
+<!--                 -->    }
+<!--                 -->}
+<!--             --></code><!--
+             --></pre>
+                <pre><!--
+                 --><code class="hljs js"><!--
+                     -->const error = new CustomErrors();
+<!--                 -->
+<!--                 -->// On passe error au formulaire ici
+<!--                 -->const form = new Form(error);
+<!--                 -->
+<!--                 -->//...
+<!--                 -->
+<!--                 -->const results = form.validate(fields);
+<!--                 -->console.log(results);
+<!--             --></code><!--
+             --></pre>
+                <p><code>f12</code> Pour le resultat.</p>
+                <p>Parfois, l'heritage est adapte, souvent il ne l'est pas.</p>
+                <p>Savoir faire cette difference est essentielle.</p>
+                <p>
+                    Avant de commencer a coder des classes, de vous servir de
+                    l'heritage, posez vous un question simple:
+                </p>
+                <p>
+                    Est-ce que mon objet 'est un(e)' ? Ou est-ce que mon objet
+                    'a un(e)'?
+                </p>
+                <p>
+                    Comme toujours, votre formateur se fera un plaisir de
+                    repondre a vos questions
+                </p>
+                <p>
+                    Ces notions sont toujours un peu floues au debut, mais avec
+                    la pratique, tout s'eclaircit et devient plus facile.
+                </p>
             </article>
         </div>
         <div class="footer">
@@ -35,6 +208,6 @@
         <script>
             hljs.initHighlightingOnLoad();
         </script>
-        <script type="module" src="js/class.js"></script>
+        <script type="module" src="js/composition.js"></script>
     </body>
 </html>
