@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     background-color: #60FECF;
@@ -15,7 +19,7 @@ h1 {
     color: white;
 }
 
-.header {
+header, .footer {
     background-color: #501fff;
     padding: 1em;
 }
@@ -105,8 +109,6 @@ ol li:nth-child(3) span {
     margin-bottom: 5px;
 }
 
-
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -154,12 +156,6 @@ button:hover {
 
 
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 1em;
-    background-color: #501fff;
     margin-top: 1em;
 }
 

@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+  --text-color-normal: hsl(210, 70%, 92.2%);
+  --text-color-light: hsl(210, 15%, 35%);
+  --text-color-richer: hsl(210, 50%, 72%);
+  --text-color-highlight: hsl(25, 70%, 45%);
+}
+
+body {
+    margin: auto;
+    background-color: #1F2831;
+    color: var(--text-color-normal);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.50rem;
+    font-size: 1.10rem;
+}
+
+h1 {
+    text-transform: capitalize;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+code {
+    font-family: 'Fira Code', 'Ubuntu Monospace', monospace;
+    background-color: white;
+    border-radius: 5px;
+    color: red;
+    padding: 0 5px 0 5px;
+}
+
+article a {
+    padding: 0.3rem;
+    color: var(--text-color-highlight);
+    background-color: var(--text-color-normal);
+    border-radius: 2px;
+}
+
+pre code {
+    font-size: 1.05rem;
+}
+
+header, .footer {
+    background-color: #501fff;
+    max-width: 100%;
+    width: 100%;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.container {
+    margin: 0 auto;
+    width: 960px;
+    background-color: #2c3e50;
+}
+
+article {
+    padding: 3rem;
+    margin-bottom: 1rem;
+}
+
+article p strong {
+    font-weight: 700;
+    color: var(--text-color-highlight);
+    text-decoration: underline;
+}
+
+article img {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.footer {
+    position: absolute;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.footer a {
+    margin-left: calc(50% - 63.5px);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+}
