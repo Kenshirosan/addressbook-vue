@@ -73,9 +73,10 @@
                 <h3>La composition:</h3>
                 <p>
                     On vient de voir de maniere theorique que la classe Form a
-                    besoin de la class Error pour fonctionner, passons a la
-                    pratique.
+                    besoin de la class Error pour fonctionner, elle en est
+                    dependante.
                 </p>
+                <p>Passons a la pratique:</p>
                 <p>
                     On a besoin d'un instance de la class Form et d'un instance
                     de la class Error
@@ -156,11 +157,19 @@
 <!--                 -->        for (let field of fields) {
 <!--                 -->            if (!field.value) {
 <!--                 -->                // Gestion des erreurs avec notre class Error
- <!--                -->               // La class a maintenant une propriete error, donc `this` &#x1F609;
+ <!--                -->                // La class a maintenant une propriete error, donc `this` &#x1F609;
 <!--                 -->                this.error.name = 'Form invalide'
 <!--                 -->                this.error.message = `Le champ ${field.name} est invalide.`
+<!--                 -->                return false;
 <!--                 -->            }
 <!--                 -->        }
+<!--                 -->
+<!--                 -->        return true;
+<!--                 -->    }
+<!--                 -->
+<!--                 -->    // Recuperation des erreurs en deleguant a la classe erreur
+<!--                 -->    getErrors() {
+<!--                 -->        return this.error.getErrors();
 <!--                 -->    }
 <!--                 -->}
 <!--             --></code><!--
@@ -174,8 +183,14 @@
 <!--                 -->
 <!--                 -->//...
 <!--                 -->
-<!--                 -->const results = form.validate(fields);
-<!--                 -->console.log(results);
+<!--                 -->if(!form.validate(fields)) {
+<!--                 -->    console.log(form.getErrors());
+<!--                 -->    console.log(form instanceof CustomErrors);
+<!--                 -->    console.log(error);
+<!--                 -->    console.log(error.getErrors());
+<!--                 -->    console.log(error instanceof Error);
+<!--                 -->    console.log(error instanceof CustomError);
+<!--                 -->}
 <!--             --></code><!--
              --></pre>
                 <p><code>f12</code> Pour le resultat.</p>
@@ -196,6 +211,29 @@
                 <p>
                     Ces notions sont toujours un peu floues au debut, mais avec
                     la pratique, tout s'eclaircit et devient plus facile.
+                </p>
+                <p>
+                    <strong>
+                        Pour resumer, la composition, c'est simplement quand une
+                        classe est composee d'autres classes, ou quand un objet
+                        comporte une ou plusieurs references d'autres objets.
+                    </strong>
+                </p>
+                <p>
+                    <strong>
+                        L'heritage, c'est quand une classe herite de methodes et
+                        proprietes d'une autre classe.
+                    </strong>
+                </p>
+                <p>
+                    Ici, on a donc une classe qui herite, la classe
+                    CustomErrors, et une classe Form dependante de la classe
+                    CustomError.
+                </p>
+                <p>
+                    Pour se detendre, un peu d'
+                    <a href="prototype.html">histoire de JavasCript</a
+                    ><span>&#x1F609;</span>
                 </p>
             </article>
         </div>

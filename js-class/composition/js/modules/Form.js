@@ -9,9 +9,15 @@ class Form {
                 // Gestion des erreurs avec notre class Error
                 this.error.name = 'Form invalide';
                 this.error.message = `Le champ ${field.name} est invalide.`;
-                return this.error;
+                return false;
             }
         }
+
+        return true;
+    }
+    // Recuperation des erreurs en deleguant a la classe erreur
+    getErrors() {
+        return this.error.getErrors();
     }
 }
 
