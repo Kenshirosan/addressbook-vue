@@ -2,7 +2,7 @@
 addressbook-no-vuex/node_modules
 addressbook-vuex/node_modules
 /dist
-
+JS5.1/addressbook-no-vuex/node_modules
 # local env files
 .env.local
 .env.*.local
