@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/dark.min.css"
+        />
+        <link rel="stylesheet" href="../css/style.css" />
+        <title>Les classes en JavaScript</title>
+    </head>
+    <body>
+        <header>
+            <h1>Les classes en JavaScript: Les accesseurs</h1>
+        </header>
+        <div class="container">
+            <article>
+                <p>
+                    Jusqu'ici, nous avons vu comment accéder a la propriété
+                    message de notre classe CustomError, heritée de la classe
+                    parente Error.
+                </p>
+                <p>
+                    Il existe une autre méthode plus simple qu'on appelle les
+                    accesseurs. Ceux-ci permettent de simplifier
+                    considérablement la syntaxe.
+                </p>
+                <p>
+                    Pour l'instant, on accède a la propriété message grâce a des
+                    méthodes que nous avons codé.
+                    <code>recordErrors(errors)</code> et
+                    <code>getErrors()</code>
+                </p>
+                <pre><!--
+                 --><code class="hljs js"><!--
+                     -->class CustomErrors extends Error {
+<!--                 -->    constructor() {
+<!--                 -->        super(); // Le constructeur de la classe parente.
+<!--                 -->    }
+<!--                 -->
+<!--                 -->    recordErrors(errors) {
+<!--                 -->        this.message = errors;
+<!--                 -->    }
+<!--                 -->
+<!--                 -->    getErrors() {
+<!--                 -->        return this.message;
+<!--                 -->    }
+<!--                 -->}
+<!--                 -->
+<!--                -->export default CustomErrors;
+<!--             --></code><!--
+             --></pre>
+                <p>
+                    On appelle un méthode pour enregsiter l'erreur et une pour
+                    la récuperer. Grâce aux accesseurs, on peut avoir la syntaxe
+                    classique d'assignation de valeurs:
+                </p>
+                <pre><!--
+                 --><code class="hljs js"><!--
+                     -->import CustomErrors from './modules/CustomErrors.js';
+<!--                 -->// Une erreur s'est produite
+<!--                 -->const errorMessage = {
+<!--                 -->    error: 'unknown',
+<!--                 -->    message: 'Same player play again',
+<!--                 -->};
+<!--                 -->
+<!--                 -->const customError = new CustomErrors();
+<!--                 -->
+<!--                 -->// On enregistre le message en l'assignant directement de maniere 'traditionnelle'
+<!--                 -->customError.message = errorMessage;
+<!--                 -->
+<!--                 -->// On accede directement a la propriete message.
+<!--                 -->console.log(customError.message);
+<!--             --></code><!--
+             --></pre>
+                <p>
+                    Pour pouvoir utiliser cette syntaxe
+                    <code>customError.message = errorMessage;</code> et
+                    <code>customError.message</code>, on doit modifier
+                    légèrement note code dans la classe:
+                </p>
+                <pre><!--
+                 --><code class="hljs js"><!--
+                     -->class CustomErrors extends Error {
+<!--                 -->    constructor() {
+<!--                 -->        super(); // Le constructeur de la classe parente.
+<!--                 -->    }
+<!--                 -->
+<!--                 -->    // on récupère la propriete de la classe parente et on lui assigne une valeur
+<!--                 -->    set message(errors) {
+<!--                 -->        return super.message = errors;
+<!--                 -->    }
+<!--                 -->
+<!--                 -->    // on récupère la propriété de la classe parente
+<!--                 -->    get message() {
+<!--                 -->        return super.message;
+<!--                 -->    }
+<!--                 -->}
+<!--                 -->
+<!--                -->export default CustomErrors;
+<!--             --></code><!--
+             --></pre>
+                <p>
+                    Notez l'utilisaton du mot-clé <code>super</code> pour
+                    accéder directement à la class parente, ainsi que les
+                    mots-clé <code>get</code> et <code>set</code>, et aussi le
+                    fait d'acceder à la propriété message sous forme de méthode.
+                </p>
+                <p>
+                    <strong>Votre formateur est la pour vous éclairer.</strong>
+                </p>
+                <p>
+                    Une méthode encore plus simple pour
+                    <a href="constructor.html"> faire la même chose.</a>
+                </p>
+            </article>
+        </div>
+        <div class="footer">
+            <footer>
+                <a href="https://3wa.fr">3WAcademy</a>
+            </footer>
+        </div>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
+        <script type="module" src="js/accessors.js"></script>
+    </body>
+</html>
