@@ -2,6 +2,5 @@
 
 ## Ajax & Promises
 
-Exemple de requetes GET et POST avec fetch et xmlhttp.
-
-WIP
+- Introduction aux requêtes AJAX avec fetch, XMLHttpRequest, jQuery $.get et $.post.
+- Introduction aux promesses.
