@@ -4,6 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/dark.min.css"
+        />
         <link rel="stylesheet" href="../css/style.css" />
         <link
             rel="icon"
@@ -18,6 +22,131 @@
             <header-template></header-template>
             <div class="container">
                 <h1>Custom Event Handling</h1>
+                <p>
+                    Abordons les Customs Events, des évènements que nous créons
+                    selon les besoins. En effet, on veut parfois que notre code
+                    réagisse quand une chose spécifique s’est passée et les
+                    events natives ne sont pas toujours adaptés.
+                </p>
+                <p>
+                    Pour bien comprendre comment fonctionne les events customs,
+                    On va travailler dans deux fichiers, le fichier HTML
+                    habituel, et un composant Vue.js.
+                </p>
+                <p>
+                    Voici le composant :
+                </p>
+
+                <pre><code class="language-javascript">export default Vue.component('custom-event-handling', {
+    template: `
+        &lt;div class="row"&gt;
+            &lt;p&gt;Aller dans l'onglet Vue de la console, puis dans l'onglet Event&lt;/p&gt;
+            &lt;button @click="dispatchCustomEvent"&gt;Dispatch Event&lt;/button&gt;
+
+            &lt;button @click="dispatchCustomEventWithPayload"&gt;Dispatch Event With Payload&lt;/button&gt;
+        &lt;/div&gt;
+    `,// Ne pas oublier pas la virgule...
+});
+</code></pre>
+                <p>
+                    Deux boutons, c’est tout. Toutefois quand non clique dessus,
+                    ceux-ci vont appeler des méthodes qui seront charger
+                    d’émettre les customs events.<br />
+                    Voyons les maintenant :<br />
+                    La méthode
+                    <code class="hljs js">dispatchCustomEvent()</code> ne sert
+                    qu’a émettre une event custom qu’on a appelé
+                    <code class="hljs js">customevent()</code>
+                    La méthode
+                    <code class="hljs js"
+                        >dispatchCustomEventWithPayload()</code
+                    >
+                    émet quant à elle une event custom avec des données :
+                    <code class="hljs js">customeventwithpayload()</code>
+                </p>
+                <p>
+                    Deux boutons, c’est tout. Toutefois quand non clique dessus,
+                    ceux-ci vont appeler des méthodes qui seront charger
+                    d’émettre les customs events.<br />
+                    Voyons les maintenant :<br />
+                    La méthode <code>dispatchCustomEvent()</code> ne sert qu’a
+                    émettre une event custom qu’on a appelé
+                    <code>customevent</code><br />
+                    La méthode
+                    <code>dispatchCustomEventWithPayload()</code> émet quant à
+                    elle une event custom avec des données :
+                    <code>customeventwithpayload</code>
+                </p>
+                <pre><code class="hljs js">methods: {
+        dispatchCustomEvent() {
+            // pour émettre un event custom, c'est aussi simple que ca.
+            this.$emit('customevent');
+        },
+
+        dispatchCustomEventWithPayload() {
+            // On peut aussi tranférer des données avec ces custom events.
+            const payload = {
+                event: 'custom',
+                transmitted: true,
+            };
+            const test = 'testing vueJS';
+            const allowedWords = ['un', 'deux', 'trois'];
+
+            // les données seront transmises sous forme de tableau ou d'objet
+            // ou une simple variable
+            this.$emit('customeventwithpayload', {
+                payload,
+                test,
+                allowedWords,
+            });
+        },
+    },
+
+</code></pre>
+
+                <p>
+                    La seule particularité des events est qu’on les écoute dans
+                    les éléments parents.<br />
+                    Quand on veut servir de ce composant, on doit l’appeler
+                    ainsi
+                    <code class="hljs html"
+                        >&lt;custom-event-handling&gt;&lt;/custom-event-handling&gt;</code
+                    >
+                    C’est la qu’on va écouter l’event. On change de fichier et
+                    voici le HTML qui reprend ce composant :
+                </p>
+
+                <pre><code class="language-html">&lt;div class"container"&gt;
+   &lt;h1Custom Event Handling&lt;/h1&gt;
+    &lt;custom-event-handling
+        @customevent="receivedEvent"
+        @customeventwithpayload="receivedEventWithPayload"
+    &gt;&lt;/custom-event-handling&gt;
+&lt;/div&gt;
+</code></pre>
+                <p>
+                    On écoute cet event exactement de la même manière qu’une
+                    event classique, et quand on la reçoit, on appelle aussi une
+                    méthode. Voici les méthodes correspondantes :
+                </p>
+                <pre><code class="language-javascript"><span class="hljs-keyword">import CustomEventHandling from'./CustomEventHandling.js';
+new Vue({
+    el: '#app',
+   components: { CustomEventHandling },
+    methods: {
+        //Sur le composant, on écoute l'event avec le @customevent, ou v-on:customevent
+        // et on appelle cette methode.
+        receivedEvent() {
+            console.log('Event Received');
+        },
+
+        receivedEventWithPayload(payload) {
+            console.log('Event Received, Payload:');
+            console.log(payload);
+        },
+    },
+});
+</code></pre>
                 <custom-event-handling
                     @customevent="receivedEvent"
                     @customeventwithpayload="receivedEventWithPayload"
@@ -25,6 +154,10 @@
             </div>
             <footer-template></footer-template>
         </div>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script type="module">
             import HeaderTemplate from '../components/header.js';
@@ -34,7 +167,11 @@
 
             new Vue({
                 el: '#app',
-                components: { HeaderTemplate, FooterTemplate },
+                components: {
+                    HeaderTemplate,
+                    FooterTemplate,
+                    CustomEventHandling,
+                },
                 data() {
                     return {};
                 },

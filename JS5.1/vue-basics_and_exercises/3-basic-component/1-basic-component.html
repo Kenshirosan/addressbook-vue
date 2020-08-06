@@ -4,6 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/dark.min.css"
+        />
         <link rel="stylesheet" href="../css/style.css" />
         <link
             rel="icon"
@@ -19,18 +23,90 @@
             <!--                          https://vuejs.org/v2/guide/components.html                           -->
             <div class="container">
                 <h1>Exemple de composant simple.</h1>
-                <!-- Vue.js offre la possibilité de créer des 'component' réutilisable,
-                c'est ici qu'on trouve la force de ce type de framework.
-                Un composant Vue.js est fait de markup html et de javascript.
-                Il offre les mêmes possibilités qu'une instance de Vue.(méthodes, data object etc etc)
-                Ce composant est déclaré dans le fichier TaskList.js
-                Vous avez sûrement vu le header et le footer depuis le début..
-             -->
+                <p>
+                    Vue.js offre la possibilité de créer des 'components'
+                    réutilisable, c'est ici qu'on trouve la force de ce type de
+                    framework.
+                </p>
+
+                <p>
+                    Un composant Vue.js est fait de markup HTML et de JavaScript
+                    et peut aussi comporter du css.
+                </p>
+
+                <p>
+                    Il offre les mêmes possibilités qu'une instance de Vue.
+                    (méthodes, data object etc etc)
+                </p>
+
+                <p>
+                    Quand on travaille dans une application faite avec Vue.js,
+                    on a accès à des fichiers avec l'extension .vue
+                </p>
+                <p>
+                    Dans ce cas la syntaxe est différente. Nous la verrons plus
+                    tard.
+                </p>
+
+                <p>
+                    Dans un composant le data object ***DOIT*** être une
+                    fonction qui retourne un objet
+                </p>
+
+                <p>
+                    Un composant Vue.js doit être composé d'un seul root Element
+                    dans le template, dans le composant suivant, ce sera une
+                    <code>&lt;ul></code>
+                </p>
+                <p>
+                    Un composant doit être nommé, ici on a crée un composant
+                    TaskList, on pourra s'en servir dans le HTML en le
+                    référençant ainsi:
+                </p>
+                <pre>
+                    <code class="hljs html">&lt;task-list></code>
+                </pre>
+                <p>On peut donc créer nos propres éléments HTML 🔥</p>
+                <p>Voici le composant déclaré dans le fichier TaskList.js</p>
+                <pre v-pre><code class="language-javascript">// export du composant.        // Nom du composant</span>
+export default Vue.component('TaskList', {
+
+// Le template HTML
+    template: `
+        &lt;ul class="mt-1em"&gt;
+            &lt;li&gt;Faire de courses&lt;/li&gt;
+            &lt;li&gt;Reviser les tableaux&lt;/li&gt;
+            &lt;li&gt;Reviser les objets JS&lt;/li&gt;
+            &lt;li&gt;Faire quelque requetes SQL&lt;/li&gt;
+            &lt;li&gt;{{ message }}&lt;/li&gt;
+        &lt;/ul&gt;`, // Attention à la virgule.. facile de l'oublier..
+
+    // Dans un composant le data object ***DOIT*** être une fonction qui retourne un objet
+    data() {
+        return {
+            message: 'Dans un composant le data object ***DOIT*** être une fonction qui retourne un objet',
+        };
+    },
+});
+</code></pre>
+                <p>Voici comment on l’importe :</p>
+
+                <pre><code class="language-javascript">import TaskList from './TaskList.js'; // Importer le composant
+new Vue({
+    el: '#app',
+    components: { TaskList }, // NE pas oublier d'enregistrer le composant.
+    data: {},
+});
+</code></pre>
+
                 <task-list></task-list>
             </div>
             <footer-template></footer-template>
         </div>
-
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script type="module">
             import HeaderTemplate from '../components/header.js';
@@ -42,7 +118,7 @@
 
             new Vue({
                 el: '#app',
-                components: { HeaderTemplate, FooterTemplate },
+                components: { HeaderTemplate, FooterTemplate, TaskList },
                 data: {},
             });
         </script>

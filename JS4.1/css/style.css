@@ -37,6 +37,54 @@ code {
     padding: 0 5px 0 5px;
 }
 
+form {
+    width: 100%;
+    padding: 2rem;
+}
+
+label,
+button {
+    display: inline-block;
+    width: 90%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+button {
+    border: none;
+    background-color: lightgreen;
+    padding: 1rem;
+    transition: background-color 300ms ease;
+    color: white;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+button:hover {
+    background-color: #ffa1ff;
+}
+
+input {
+    width: 90%;
+    padding: 1rem;
+    margin: auto;
+}
+
+input[placeholder] {
+    color: grey;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+span.form-error {
+    display: block;
+    background-color: rgba(255, 100, 100, 1);
+    color: white;
+    padding: 1em;
+    border: 5px;
+    width: 90%
+}
+
 article a {
     padding: 0.3rem;
     color: var(--text-color-highlight);

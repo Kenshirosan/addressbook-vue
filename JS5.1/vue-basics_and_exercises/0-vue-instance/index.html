@@ -20,7 +20,6 @@
     <body>
         <div id="app">
             <header-template></header-template>
-
             <div class="container">
                 <h2>Pour démarrer:</h2>
                 <ol>
@@ -110,10 +109,10 @@
                             </p>
                             <pre><!--
                             --><code class="hljs js"><!--
-                                    -->new Vue({
-     <!--                               -->  //options
-    <!--                            -->})
-    <!--                     --></code><!--
+                                -->new Vue({
+<!--                            -->  //options
+<!--                            -->});
+<!--                     --></code><!--
                         --></pre>
                             <p>
                                 La fonction Vue prend un objet en argument, cet
@@ -138,9 +137,35 @@
                                 L'élément root est un élément HTML auquel on
                                 attache une instance de Vue.
                             </p>
+                            <p>Voici le code qui rend cette page dynamique</p>
+                            <pre><code class="js language-js"><!--
+                         -->&lt;script type="module"&gt;
+<!--                         -->    import HeaderTemplate from '../components/header.js';
+<!--                         -->    import FooterTemplate from '../components/footer.js';
+<!--                         -->    new Vue({
+<!--                         -->        el: '#app', // on attache l'instance de Vue a cet élément.
+<!--                         -->        components: { HeaderTemplate, FooterTemplate },
+<!--                         -->        data() {
+<!--                         -->            return {
+<!--                         -->                showVueIntro: false,
+<!--                         -->                };
+<!--                         -->         },
+<!--                         -->         computed: {
+<!--                         -->             classes() {
+<!--                         -->                return this.showVueIntro ? 'active' : 'inactive';
+<!--                         -->             },
+<!--                         -->         },
+<!--                         -->    });
+<!--                     -->&lt;/script&gt;
+<!--                     --></code></pre>
                         </div>
                     </article>
                 </section>
+                <p>
+                    Ce code est obscur pour l'instant mais vous allez voir au
+                    fur et à mesure de la semaine qu'il est en réalité très
+                    simple de travailler avec cette librairie.
+                </p>
             </div>
             <footer-template></footer-template>
         </div>

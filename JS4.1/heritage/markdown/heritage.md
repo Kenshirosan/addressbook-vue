@@ -6,17 +6,19 @@ En JavaScript, au même titre que la classe Date ou Math, on a accès a la class
 
 Ouvrez la console `f12` et taper le code suivant:
 
-```js
+```javascript
 console.dir(new Error());
 ```
 
-![](img/error.png) On voit quand on clique sur 'prototype' que la class Error native a une propriété 'message'. Nous reviendrons plus tard sur ce qu'est le prototype.
+![illustration](../img/error.png)  
+
+On voit quand on clique sur 'prototype' que la class Error native a une propriété 'message'. Nous reviendrons plus tard sur ce qu'est le prototype.
 
 Notre classe CustomErrors ne possède pas de telle propriété, mais on en aurait bien besoin
 
 Plutot que créer une propriété message sur notre classe, on va faire en sorte d'hériter des propriétés de la classe native.
 
-```js
+```javascript
 class CustomErrors extends Error {}
 ```
 
@@ -33,7 +35,7 @@ pour initialiser le constructeur de la méthode parente. Et appeler cette métho
 -   Quand on instancie une classe avec `new`, on crée un objet vide et on y assigne `this`
 -   Mais quand on le fait avec une classe derivée, celle ci attend de la classe parente qu'elle fasse ce travail.
 
-```js
+```javascript
 class CustomErrors extends Error {
     constructor() {
         super(); // Le constructeur de la classe parente.
@@ -53,7 +55,7 @@ export default CustomErrors;
 
 Après cette opération, on a accès a la propriété message de la classe parente. Et le mot-clé `this` est initialisé.
 
-```js
+```javascript
 import CustomErrors from './CustomErrors.js';
 // Une erreur s'est produite
 const errorMessage = {

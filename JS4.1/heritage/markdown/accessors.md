@@ -6,7 +6,7 @@ Il existe une autre méthode plus simple qu'on appelle les accesseurs. Ceux-ci p
 
 Pour l'instant, on accède a la propriété message grâce a des méthodes que nous avons codé. `recordErrors(errors)` et `getErrors()`
 
-```js
+```javascript
 class CustomErrors extends Error {
     constructor() {
         super(); // Le constructeur de la classe parente.
@@ -26,7 +26,7 @@ export default CustomErrors;
 
 On appelle un méthode pour enregsiter l'erreur et une pour la récuperer. Grâce aux accesseurs, on peut avoir la syntaxe classique d'assignation de valeurs:
 
-```js
+```javascript
 import CustomErrors from './modules/CustomErrors.js';
 // Une erreur s'est produite
 const errorMessage = {
@@ -45,7 +45,7 @@ console.log(customError.message);
 
 Pour pouvoir utiliser cette syntaxe `customError.message = errorMessage;` et `customError.message`, on doit modifier légèrement note code dans la classe:
 
-```js
+```javascript
 class CustomErrors extends Error {
     constructor() {
         super(); // Le constructeur de la classe parente.

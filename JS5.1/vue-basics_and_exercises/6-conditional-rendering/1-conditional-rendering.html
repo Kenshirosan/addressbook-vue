@@ -4,6 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/dark.min.css"
+        />
         <link rel="stylesheet" href="../css/style.css" />
         <link
             rel="icon"
@@ -21,6 +25,39 @@
                 <p>
                     Equivalent de if, else if, else, pas besoin d'explications
                 </p>
+                <p>
+                    Voici un exemple de code JavaScript, toujours l'objet data :
+                </p>
+                <pre><code class="language-javascript">new Vue({
+    el: '#app',
+    components: { HeaderTemplate, FooterTemplate },
+    data: {
+        persons: [
+            { name: 'John Doe' age: 18 },
+            { name: 'Jack Doe' age: 30 },
+            { name: 'Jane Doe' age: 45 },
+        ],
+    },
+});
+</code></pre>
+                <p>Et voici le template HTML</p>
+                <pre v-pre><code class="language-html">&lt;ul&gt;
+    &lt;li v-for="person in persons" v-if="person.age === 18"&gt;
+        {{ person.name }}
+    &lt;/li&gt;
+    &lt;li v-else-if="person.age &gt; 10 &amp;&amp; person.age &lt; 35"&gt;
+        {{ person.name }}
+    &lt;li&gt;
+    &lt;li>v-else&gt;
+        {{ person.name }}
+    &lt;/li<&gt;
+&lt;/ul&gt;
+</code></pre>
+                <em
+                    >A ce stade de la formation, nous estimons que nous n'avons
+                    pas besoin de fournir des explications à propose de ces
+                    directives.</em
+                >
                 <ul>
                     <li v-for="person in persons" v-if="person.age === 18">
                         v-if l'age est egal a 18: {{ person.name}}
@@ -36,7 +73,10 @@
             </div>
             <footer-template></footer-template>
         </div>
-
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script type="module">
             import HeaderTemplate from '../components/header.js';

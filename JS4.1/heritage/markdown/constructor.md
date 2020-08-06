@@ -2,7 +2,7 @@
 
 Pour faire la même chose que précédemment, il est possible de passer directement par le constructeur.
 
-```js
+```javascript
 class CustomErrorsConstructor extends Error {
     constructor(message) {
         super(message);
@@ -13,7 +13,7 @@ class CustomErrorsConstructor extends Error {
 export default CustomErrorsConstructor;
 ```
 
-```js
+```javascript
 import CustomErrorsConstructor from './modules/CustomErrorsConstructor.js';
 // Une erreur s'est produite
 const errorMessage = {
@@ -29,9 +29,10 @@ const customError = new CustomErrors(errorMessage);
 console.log(customError.message);
 ```
 
-On se souvient qu'il y également un propriété name a la class native Error: ![image d'illustration](img/error.png) Modifions notre code:
+On se souvient qu'il y également un propriété name à la class native Error: ![image d'illustration](../img/error.png)  
+Modifions notre code:
 
-```js
+```javascript
 class CustomErrorsConstructor extends Error {
     constructor(message, name) {
         // attention le constructeur de la classe Error n'accepte qu'un argument
@@ -46,7 +47,7 @@ export default CustomErrorsConstructor;
 
 Jusqu'a maintenant , on lisait un message très vague et flou dans la console, avec cette modification on peut lire le nom de l'erreur et la valeur du message quand on console.log l'instance de l'erreur.
 
-```js
+```javascript
 import CustomErrorsConstructor from './modules/CustomErrorsConstructor.js';
 // Une erreur s'est produite
 const errorMessage = {

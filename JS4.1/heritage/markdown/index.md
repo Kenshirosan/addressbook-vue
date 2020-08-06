@@ -20,7 +20,7 @@ Quand on ajoute un fonction dans une classe, on ne l'appelle plus fonction mais 
 
 Voici la syntaxe pour ajouter une **_méthode_**dans une classe.
 
-```js
+```javascript
 class CustomErrors {
     recordErrors() {
         //
@@ -54,7 +54,7 @@ signifie qu'on veut accéder à une variable **_errors_** de notre classe, qu'on
 
 Pour l'instant la classe ne sait pas qu'elle a une variable **_errors_**. Pour la déclarer, il nous faut un constructeur:
 
-```js
+```javascript
 class CustomErrors {
     constructor() {
         this.errors = {};
@@ -72,13 +72,13 @@ Quand on crée un objet à partir d'une classe, on parle d'instanciation. Dans c
 
 Pour instancier une classe, voici la syntaxe:
 
-```js
+```javascript
 const errors = new CustomErrors();
 ```
 
 On a maintenant une instance de la classe CustomErrors et on peut accéder à ses méthodes.
 
-```js
+```javascript
 const errors = new CustomErrors();
 //On a instancie la classe CustomErrors, on sait que sa propriété errors est un objet vide.
 //On sait que la méthode recordError accepte un argument et que cette argument est un objet.
@@ -91,7 +91,7 @@ errors.recordErrors(error);
 
 On a donc enregistré une erreur. Maintenant, on doit pouvoir y accéder. Il suffit de rajouter un méthode qui nous le permet:
 
-```js
+```javascript
 class CustomErrors {
     constructor() {
         this.errors = {};
@@ -109,7 +109,7 @@ class CustomErrors {
 
 Pour accéder aux données, il ne reste qu'appeler la méthode `getErrors()`:
 
-```js
+```javascript
 const errors = new CustomErrors();
 // On a instancié la classe, on sait que sa propriété errors est un objet vide.
 // On sait que la méthode recordError accepte un argument. Ce sera un objet.
@@ -127,7 +127,7 @@ On a créer la classe CustomErrors dans le fichier correspondant Error.js, c'est
 
 Dans cet exemple, on a la classe CustomErrors et après la déclaration de celle-ci, on l'exporte ainsi:
 
-```js
+```javascript
 class CustomErrors {
     constructor() {
         this.errors = {};
@@ -153,7 +153,7 @@ Naturellement, si on exporte un fichier, on va l'importer ailleurs.
 
 Dans le fichier class.js, on importe la classe et on s'en sert dans la fonction `validateFormInput()` ainsi que dans le test en dessous.
 
-```js
+```javascript
 import CustomErrors from './modules/CustomErrors.js';
 
 //Instanciation
@@ -178,7 +178,7 @@ if (!validateFormInput(`un input invalide`)) {
 
 Pour rendre possible l'import / export de modules, on doit le spécifier dans la balise script du fichier html.
 
-```js
+```html
 <script type="module" src="class.js"></script>
 ```
 

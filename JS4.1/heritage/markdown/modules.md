@@ -6,7 +6,7 @@ Dans l'exemple précédent, il y avait un fichier qui ne comportait qu'une class
 
 Supposons qu'on ait un fichier avec différentes fonctions, et que l'on ne veuille en exporter que quelques une, la syntaxe sera la suivante:
 
-```js
+```javascript
 function commonHelper() {
     //
 }
@@ -25,14 +25,14 @@ export { ucfirst, validate };
 
 Et quand on souhaite importer:
 
-```js
+```javascript
 // On importe ce dont on a besoin..
 import { ucfirst, validate } from './fonctions.js;';
 ```
 
 Et on oublie pas dans la balise script:
 
-```js
+```html
 <script type="module" src="index.js"></script>
 ```
 

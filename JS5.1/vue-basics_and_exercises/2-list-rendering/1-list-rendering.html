@@ -4,6 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/dark.min.css"
+        />
         <link rel="stylesheet" href="../css/style.css" />
         <link
             rel="icon"
@@ -19,9 +23,25 @@
 
             <div class="container">
                 <h1>Rendu de tableaux et objets avec Vue.js</h1>
-
-                <h2>List Rendering avec un tableau</h2>
-                <!-- Rendu d'un tableau simple dans une ul avec la directive v-for of -->
+                <h4>Comment gérer les boucles avec Vue.js ?</h4>
+                <h5>Rendu d'un tableau dans une liste :</h5>
+                <p>
+                    Ajoutons un tableau à notre data object
+                </p>
+                <pre><code class="hljs js"><!--
+             -->    data() {
+<!--         -->        return {
+<!--         -->            arr: ['item', 'item 1', 'item2'],
+<!--         -->        };
+<!--         -->    }
+<!--        --></code></pre>
+                <p>Et on tourne autour avec la directive v-for of</p>
+                <pre><code class="hljs html"><!--
+             -->&lt;ul>
+<!--         -->    &lt;!-- On extrait chaque element 'item' du tableau 'arr   -->
+<!--         -->    &lt;li v-for="item of arr">{{ item }}&lt;/li>
+<!--         -->&lt;/ul>
+                </code></pre>
                 <ul>
                     <li v-for="item of test">{{ item }}</li>
                 </ul>
@@ -29,8 +49,27 @@
                 <!--        -->
                 <!--        -->
 
-                <h2>'Table Element Rendering' avec un tableau</h2>
+                <h5>Rendu d'un objet dans une table :</h5>
 
+                <p>On ajoute un objet :</p>
+
+                <pre><code class="hljs js"><!--
+             -->data() {
+ <!--        -->    return {
+ <!--        -->        obj: { name: 'John Doe', phone: '06-06-06-06-06' },
+ <!--        -->    };
+ <!--        -->}</code></pre>
+
+                <p>Et on utilise la directive v-for in :</p>
+
+                <pre><code class="hljs html"><!--
+             -->&lt;tbody>
+<!--         -->    &lt;tr>
+<!--         -->        &lt;!-- On extrait chaque element 'item' de l'objet 'obj'   -->
+<!--         -->        &lt;td v-for="item in obj">{{ item }}&lt;/td>
+<!--         -->    &lt;/tr>
+<!--         -->&lt;/tbody>
+                </code></pre>
                 <table>
                     <thead>
                         <tr>
@@ -46,7 +85,34 @@
                     </tbody>
                 </table>
 
-                <h2>'Table Element Rendering': un tableau compose d'objets</h2>
+                <h5>Rendu d'un tableau compose d'objets dans une table :</h5>
+
+                <p>On ajoute les données :</p>
+
+                <pre><code class="hljs js"><!--
+             -->data() {
+<!--         -->    return {
+<!--         -->        arrOfObj: [
+<!--         -->            { name: 'John Doe', phone: '06-06-06-06-06' },
+<!--         -->            { name: 'Jane Doe', phone: '07-07-07-07-07' },
+<!--         -->            { name: 'Jack Doe', phone: '08-08-08-08-08' },
+<!--         -->        ],
+<!--         -->    };
+<!--         -->}</code></pre>
+
+                <p>
+                    On met une directive v-or of pour extraire les objets du
+                    tableau, suivi d'une directive v-for in pour les objets :
+                </p>
+
+                <pre><code class="hljs html"><!--
+             -->&lt;tbody>
+<!--         -->    &lt;tr  v-for="items of arrayOfObj">
+<!--         -->        &lt;!-- On extrait chaque element 'item' de l'objet 'obj'   -->
+<!--         -->        &lt;td v-for="item in items">{{ item }}&lt;/td>
+<!--         -->    &lt;/tr>
+<!--         -->&lt;/tbody>
+                </code></pre>
 
                 <table>
                     <thead>
@@ -66,6 +132,10 @@
             </div>
             <footer-template></footer-template>
         </div>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script type="module">
             import HeaderTemplate from '../components/header.js';

@@ -4,6 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/dark.min.css"
+        />
         <link rel="stylesheet" href="../css/style.css" />
         <link
             rel="icon"
@@ -20,13 +24,98 @@
 
             <div class="container">
                 <h1>Basic Data Binding</h1>
+                <h3>Comment fonctionne Vue.js ?</h3>
+                <p>
+                    Vue.js recherche un élément par son ID, qu'on lui spécifie
+                    quand on l'instancie.
+                </p>
+                <pre><code class="hljs html"><!--
+            -->&lt;div id="app"&gt;&lt;/div&gt;
+<!--        --></code></pre>
+                <pre><code class="hljs js"><!--
+            -->new Vue({
+<!--        -->    el: '#app'
+<!--        -->});
+<!--        --></code></pre>
+                <p>
+                    L'id app sert d'ancre à Vue.js, on lui donne le nom qu'on
+                    veut, app ou root sont bien adaptés.
+                </p>
+                <p>
+                    A partir de cet élémént 'racine', Vue.js sélectionne tous
+                    les éléments récursivement et recherche des propriétés,
+                    qu'on appelle des directives, qui rendront un élement
+                    réactif.
+                </p>
+                <p>Examinons un exemple avec la directive v-model :</p>
+                <pre><code class="hljs html"><!--
+            -->&lt;form action="" method="POST">
+<!--        -->    &lt;label for="message">
+<!--        -->         On teste la directive v-model
+<!--        -->    &lt;/label>                     &lt;!-- directive v-model -->
+<!--        -->     &lt;input type="text" id="message" v-model="message">
+<!--        -->&lt;/form>
+<!--        --></code></pre>
+                <p>
+                    Avec le data object, on lie maintenant nos directives avec
+                    javascript pour les rendre réactives :
+                </p>
+                <pre><code class="hljs js"><!--
+            -->new Vue({
+<!--        -->    el: '#app',
+<!--        -->    data: {
+<!--        -->        message: ''
+<!--        -->    }
+<!--        -->});
+<!--        --></code></pre>
+
+                <p>
+                    Avec ces courtes ligne de code, on a maintenant une
+                    propriété message réactive. Si on tape du texte dans
+                    l'input, message prendra automatiquement la valeur de ce
+                    qu'on tape.
+                </p>
+                <p>
+                    Pour vérifier ça, on a plusieurs solutions, la directive
+                    v-text ou les 'moustaches':
+                </p>
+
+                <pre v-pre><code class="hljs html"><!--
+             -->&lt;!--  la syntaxe moustache permet d'accéder aux propriétés de l'objet data -->
+<!--        -->&lt;p>{{ message }}&lt;/p>
+<!--        -->&lt;!-- la directive v-text permet d'accéder aux propriétés de l'objet data -->
+<!--        -->&lt;p&gt; v-text="message">&lt;/p>
+<!--        --></code></pre>
+
+                <p>Voyons maintenant comment rendre du HTML sur une page :</p>
+
+                <pre v-pre><code class="hljs js"><!--
+            -->new Vue({
+<!--        -->    el: '#app',
+<!--        -->    data: {
+<!--        -->        message: '',
+<!--        -->        // On rajoute une propriété avec en valeur un tag html
+<!--        -->        html: `&lt;p>Testing Awesomeness&lt;/p>`
+<!--        -->    }
+<!--        -->});
+<!--        --></code></pre>
+
+                <p>Et dans le HTML, la directive v-html :</p>
+
+                <pre v-pre><code class="hljs html"><!--
+             -->&lt;p v-html="html">&lt;/p>
+<!--        --></code></pre>
                 <form action="" method="POST">
-                    <!--  la directive v-model dediee aux input et 'form control'     -->
+                    <!--  la directive v-model dédiée aux input et 'form control'     -->
                     <label for="message"
-                        >Taper dans le formulaire et lisez les commentaires dans
-                        le code.</label
+                        >Pour tester le résultat c'est c'ici :</label
                     >
-                    <input type="text" id="message" v-model="message" />
+                    <input
+                        type="text"
+                        id="message"
+                        v-model="message"
+                        placeholder="taper qqchose"
+                    />
                 </form>
 
                 <!--  la syntaxe moustache permet d'accéder aux propriétés de l'objet data -->
@@ -34,14 +123,43 @@
                 <!--  la directive v-text permet d'accéder aux propriétés de l'objet data -->
                 <p v-text="message"></p>
 
+                <strong>En dessous le html du data object : </strong>
+
                 <!--   Pour le HTML, la directive v-html, sinon on affiche les tags en meme temps. -->
-                <p>{{ html }}</p>
-                <p v-text="html"></p>
                 <p v-html="html"></p>
+
+                <h4>A noter :</h4>
+                <p>
+                    Il existe deux façons de spécifier un élément root à Vue.js,
+                    voyons la deuxième :
+                </p>
+                <pre><code class="hljs js"><!--
+            -->new Vue({
+<!--        -->    //
+<!--        -->}).$mount('#app'); // on peut attacher le root element ici
+<!--        --></code></pre>
+
+                <p>
+                    Petit à petit, nous allons voir les directives et méthodes
+                    les plus utilisées de Vue.js
+                </p>
+                <p>
+                    La syntaxe décrite ici est valable dans le cas ou on utilise
+                    Vue.js sur une seule page. Ce n'est donc pas l'idéal, mais
+                    l'avantage est qu'il est très simple de démarrer pour
+                    s'entraîner.
+                </p>
+                <p>
+                    Nous verrons plus tard la syntaxe recommandée dans le cadre
+                    des composants et d'une application faite avec Vue.js
+                </p>
             </div>
             <footer-template></footer-template>
         </div>
-
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script type="module">
             import HeaderTemplate from '../components/header.js';
@@ -53,10 +171,11 @@
                 // On lui donne l'objet data en option, cet objet sera accessible dans le template
                 // L'objet data est lisible et modifiable. On parle de 'two ways data-binding'.
                 data: {
-                    message: 'testing vue data binding',
-                    html: '<p>test awesome vue</p>',
+                    message: '',
+                    html: '<p>testing awesome vue</p>',
                 },
             }).$mount('#app'); // Ici, on 'accroche' l'instance de Vue à son root element, le div#app
-        </script>              <!--  Il y a donc deux façons d'attacher une instance de Vue au HTML.             -->
+        </script>
+        <!--  Il y a donc deux façons d'attacher une instance de Vue au HTML.             -->
     </body>
 </html>

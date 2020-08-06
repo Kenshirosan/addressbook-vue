@@ -4,6 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/dark.min.css"
+        />
         <link rel="stylesheet" href="../css/style.css" />
         <link
             rel="icon"
@@ -19,14 +23,125 @@
 
             <div class="container">
                 <h1>
-                    Event Handling: v-on:click/@click, v-on:submit/@submit,
-                    modifier: .prevent
+                    Event Handling
                 </h1>
+                <p>Etudions maintenant les event listeners :</p>
+                <p>
+                    Tous les event listeners disponibles en JavaScript sont
+                    disponibles dans Vue.js, après tout, Vue.js c'est du
+                    JavaScript.
+                </p>
+                <p>Débutons par voir le 'submit' :</p>
+                <p>
+                    On l'ajout simplement à un formulaire et on y ajoute le
+                    modificateur `.prevent` pour empêcher le comportement par
+                    défaut de formulaire.
+                </p>
+                <p>On ajoute aussi le v-model au champs du formulaires.</p>
+                <pre><code class="hljs html"><!--
+             -->&lt;form action="" @submit.prevent="createContact">
+<!--         -->    &lt;label for="name">Name&lt;/label>
+<!--         -->    &lt;input type="text" v-model="name" id="name" />
+<!--         -->    &lt;label for="email">Email&lt;/label>
+<!--         -->    &lt;input type="email" v-model="email" id="email" />
+<!--         -->    &lt;label for="phone">Phone&lt;/label>
+<!--         -->    &lt;input type="tel" v-model="phone" id="phone" />
+<!--         -->    &lt;button type="submit">Submit&lt;/button>
+<!--         -->&lt;/form>
+<!--         --></code></pre>
+                <div>
+                    On a écrit
+                    <pre><code class="hljs js">@submit.prevent="createContact"</code></pre>
+                    ce qui signifie que nous allons appeler la méthode
+                    <pre><code class="hljs js">createContact()</code></pre>
+                    quand on envoie le formulaire.
+                </div>
+                <div>
+                    Ecrivons maintenant notre objet data et la méthode
+                    <pre><code class="hljs js">createContact()</code></pre>
+                    à l'aide de l'objet methods de Vue.js.
+                </div>
+
+                <pre><code class="hljs js"><!--
+             -->new Vue({
+<!--         -->    el: '#app',
+<!--         -->
+<!--         -->    data: {
+<!--         -->        name: '',
+<!--         -->        email: '',
+<!--         -->        phone: ''
+<!--         -->    },
+<!--         -->
+<!--         -->    // L'objet methods permet d'écrire des fonctions,
+<!--         -->    //ces fonctions sont locales dans le contexte d'un 'component'
+<!--         -->    methods: {
+<!--         -->        createContact() {
+<!--         -->            const contact = {
+<!--         -->                name: this.name,
+<!--         -->                email: this.email,
+<!--         -->                phone: this.phone,
+<!--         -->            };
+<!--         -->            console.log(contact);
+<!--         -->        },
+<!--         -->    },
+<!--         -->});
+<!--         --></code></pre>
+                <p>
+                    Et c'est tout. Grâce au data object, au v-model et au
+                    two-way data binding, les propriétés correspondantes se
+                    mettront automatiquement à jour avec la valeur qu'auront les
+                    champs du formulaire. Dès qu'on va envoyer le formulaire, le
+                    contact sera crée sans qu'on est rien d'autre à faire.
+                </p>
+                <p>Interceptons maintenant les events sur d'autres éléments.</p>
+                <pre><code class="hljs html"><!--
+             -->&lt;button @click="doSomething">Cliquer&lt;/button>
+<!--         -->&lt;!-- le .prevent pour un lien -->
+<!--         -->&lt;a @click.prevent="intercept" href="test.php">Lien quelconque&lt;/a>
+<!--         --></code></pre>
+                <div>
+                    On ajoute nos fonctions
+                    <pre><code class="hljs js">doSomething()</code></pre>
+                    et
+                    <pre><code class="hljs js">intercept()</code></pre>
+                    en les séparant par des virgules, et c'est tout. La
+                    simplicité est remarquable.
+                </div>
+                <pre><code class="hljs js"><!--
+             -->new Vue({
+<!--         -->    el: '#app',
+<!--         -->
+<!--         -->    data: {
+<!--         -->        name: '',
+<!--         -->        email: '',
+<!--         -->        phone: ''
+<!--         -->    },
+<!--         -->
+<!--         -->    // L'objet methods permet d'écrire des fonctions,
+<!--         -->    //ces fonctions sont locales dans le contexte d'un 'component'
+<!--         -->    methods: {
+<!--         -->        createContact() {
+<!--         -->            const contact = {
+<!--         -->                name: this.name,
+<!--         -->                email: this.email,
+<!--         -->                phone: this.phone,
+<!--         -->            };
+<!--         -->            console.log(contact);
+<!--         -->        },
+<!--         -->
+<!--         -->        doSomething() {
+<!--         -->            console.log('bouton clique');
+<!--         -->        },
+<!--         -->
+<!--         -->        interceptEvent() {
+<!--         -->            console.log('clique a href');
+<!--         -->        },
+<!--         -->    },
+<!--         -->});
+<!--         --></code></pre>
+                Vous pouvez tester le résultat comme d'habitude.
+                <pre><code class="hljs html">f12</code></pre>
                 <div class="form-group">
-                    <!-- l'event submit avec le modifier prevent ( e.preventDefault() ) -->
-                    <!-- Execute un fonction quand on 'submit' -->
-                    <!-- Remplir le formulaire, cliquer sur submit et admirer le resultat dans la console -->
-                    <!--  J'ecris @submit mais on peut aussi l'écrire v-on:submit -->
                     <form action="" @submit.prevent="createContact">
                         <label for="name">Name</label>
                         <input type="text" v-model="name" id="name" />
@@ -47,7 +162,10 @@
             </div>
             <footer-template></footer-template>
         </div>
-
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
         <script type="module">
