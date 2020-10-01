@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="../css/style.css" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="../img/icon/logo.png"
+        />
+        <title>List Rendering</title>
+    </head>
+    <body>
+        <div id="app">
+            <header-template></header-template>
+
+            <div class="container">
+                <h1>Exercice v-for</h1>
+                <p>
+                    Créer un objet data contenant un tableau simple et un
+                    tableau composé d'objets
+                </p>
+                <p>
+                    Afficher les éléments de l'objet data dans des listes et
+                    tables
+                </p>
+            </div>
+
+            <footer-template></footer-template>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script type="module">
+            import HeaderTemplate from '../components/header.js';
+            import FooterTemplate from '../components/footer.js';
+
+            new Vue({
+                el: '#app',
+                components: { HeaderTemplate, FooterTemplate },
+                // <!-- Créer un objet data contenant un tableau simple et un tableau composé d'objet  -->
+                // <!-- Afficher les éléments de l'objet data dans des listes et tables   -->
+            });
+        </script>
+    </body>
+</html>

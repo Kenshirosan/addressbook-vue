@@ -1,0 +1,85 @@
+body {
+    font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+h1 {
+    text-align: center;
+}
+
+.container {
+    width: 960px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    line-height: 1.4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    height: 100%;
+    padding: 2em 0 2em 0;
+}
+.card {
+    background: #fff
+        url('https://storage.googleapis.com/chydlx/codepen/minimalist-profile-card/card-bg.jpg')
+        top -10% center no-repeat;
+    background-size: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px -5px rgba(60, 60, 60, 0.2);
+    text-align: center;
+    padding: 30px 60px;
+}
+.card img {
+    background-color: #dddfe6;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    margin: auto auto 15px;
+    display: block;
+}
+.card h2 {
+    font-size: 22px;
+    margin: 10px auto 0;
+    letter-spacing: 1px;
+}
+.card h3 {
+    margin: auto;
+    color: #b1b6c6;
+    font-weight: 300;
+    font-size: 14px;
+}
+.card .button {
+    display: block;
+    text-decoration: none;
+    background: #3b70fc;
+    color: #f9f9f9;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    min-width: 200px;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+}
+.card .button span {
+    font-size: 20px;
+    line-height: 1;
+    vertical-align: top;
+}
+.card .button:hover {
+    background: #1856fb;
+}
+.error {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    background: darkred;
+    color: white;
+    padding: 1em;
+    text-transform: capitalize;
+    font-size: 1.5em;
+}

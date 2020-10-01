@@ -20,14 +20,15 @@ Enfin la dernière commande permettra de démarrer un serveur dont la racine est
 ```bash 
 npm run dev
 ```
-Voici quelques schémas pour décrire la page que êtes en train de lire :
+Voici quelques schémas pour décrire la page que vous êtes en train de lire :
 
 ![app arch](./dist/img/app.png)  
 ![app arch](./dist/img/main.png)  
 ![app arch](./dist/img/index.png) 
 
+Un fichier .vue est structuré par deux éléments requis :  `<template> ` et `<script>` et un tag `<style>` optionnel.  
+**_Important : Dans le tag template, un seul élément racine doit être présent._**, Par exemple, si le composant contient deux `<ul>`, elles devront être entourées par une balise `div`, si le composant ne contient qu'une `<ul>`, on peut le laisser ainsi.  
 Voici la syntaxe d'un composant dans un fichier .vue
-
 ```html
 <template>
     <div>
@@ -56,36 +57,4 @@ Voici la syntaxe d'un composant dans un fichier .vue
         margin: auto;
     }
 </style>
-```
-
-### Introduction aux props:
-
-Les props sont des propriétés que l'on passe à un composant à l'endroit où on se sert du composant. Il peut avoir n'importe quelle valeur, des images d'un slider par exemple
-
-    <slider-component :images=""></slider-component>
-
-On le récupère dans le fichier .vue :
-```html
-<template>
-    <div>
-       <div class="slider">              <!--     -->
-            <img v-for="image in images" :src="image" class="slider-item">
-        </div>
-    </div>
-</template>
-<script>
-    export default {
-        // Déclarer les props ici
-        props: ['images'],
-        data() {
-            return {
-                sliderImages: ''
-            }
-        },
-        // méthode appelé automatiquement au chargement du composant
-        mounted() {
-            this.sliderImages = this.$props.images; // on y accède par this.$props
-        }
-    }
-</script>
 ```

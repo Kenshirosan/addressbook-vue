@@ -35,5 +35,8 @@
         "arrowParens": "avoid",
         "htmlWhitespaceSensitivity": "css",
         "quoteProps": "as-needed"
+    },
+    "devDependencies": {
+        "prettier": "^2.0.5"
     }
 }

@@ -53,8 +53,9 @@ class Form {
             }
 
             if (field.name === 'name') {
-                if (!field.value)
-                    return this.error.record({ name: 'Nom invalide' });
+                if (!field.value || field.value.length < 4) {
+                    this.error.record({ name: 'Nom invalide' });
+                }
                 this._contact.name = field.value;
             }
         }

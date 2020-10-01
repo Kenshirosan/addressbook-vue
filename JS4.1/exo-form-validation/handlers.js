@@ -1,15 +1,3 @@
-const validator = {
-    nameMinimmumLength: 4,
-
-    validateName: function(key) {
-        if (typeof key !== 'string' || key.length < nameMinimmumLength) {
-            return state.errors.record(
-                `Quelque chose d'horrible s'est produit`
-            );
-        }
-    },
-};
-
 function createError() {
     if (!state.errors.get()) return;
 
@@ -23,10 +11,4 @@ function createError() {
     clearError();
 }
 
-function clearError() {
-    setTimeout(() => {
-        document.querySelector('#error').remove();
-    }, 3000);
-}
-
-export { validator, handler, createError };
+export { createError };

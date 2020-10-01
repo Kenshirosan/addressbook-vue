@@ -1,0 +1,15 @@
+.idea
+package.json
+test
+app-lara-8/laravel8/node_modules
+app-lara-8/laravel8/vendor
+app-lara-8/laravel8/.env
+app-lara-8/laravel8/.idea
+app-lara-8/laravel8//public/hot
+app-lara-8/laravel8/public/storage
+app-lara-8/laravel8/storage/*.key
+app-lara-8/laravel8/.phpunit.result.cache
+app-lara-8/laravel8/Homestead.json
+app-lara-8/laravel8/Homestead.yaml
+app-lara-8/laravel8/npm-debug.log
+app-lara-8/laravel8/yarn-error.log

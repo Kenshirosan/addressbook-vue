@@ -36,8 +36,9 @@ new Vue({
 });
 ``` 
 
-Avec ces courtes ligne de code, on a maintenant une propriété message réactive.
-Si on tape du texte dans l'input, message prendra automatiquement la valeur de ce qu'on tape.
+Avec ces courtes ligne de code, on a maintenant une propriété `message` réactive.
+Si on tape du texte dans l'input, la propriété `message` prendra automatiquement la valeur de ce qu'on tape.
+ON appelle ça _une liaison de données bidirectionnelle_ ou _two-way data binding_.
 
 Pour vérifier ça, on a plusieurs solutions, la directive v-text ou les 'moustaches':
 

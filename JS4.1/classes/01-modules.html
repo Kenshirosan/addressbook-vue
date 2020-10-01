@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/dark.min.css"
+        />
+        <link rel="stylesheet" href="../css/style.css" />
+        <title>Les classes en JavaScript</title>
+    </head>
+    <body>
+        <header>
+            <h1>Précisions sur les modules</h1>
+        </header>
+        <div class="container">
+            <article>
+                <p>
+                    Avant de continuer avec les classes, quelques précisions
+                    sont nécessaires à propos des modules.
+                </p>
+                <p>
+                    Dans l'exemple précédent, il y avait un fichier qui ne
+                    comportait qu'une classe, donc une seule chose à exporter.
+                </p>
+                <p>
+                    Supposons qu'on ait un fichier avec différentes fonctions,
+                    et que l'on ne veuille en exporter que quelques une, la
+                    syntaxe sera la suivante:
+                </p>
+                <pre><code class="hljs js">
+<!--                 -->function commonHelper() {
+<!--                 -->    //
+<!--                 -->}
+<!--                 -->
+<!--                 -->function validate() {
+<!--                 -->    //
+<!--                 -->}
+<!--                 -->
+<!--                 -->function ucfirst(string) {
+<!--                 -->    return string.charAt(0).toUpperCase() + string.substring(1);
+<!--                 -->}
+<!--                 -->
+<!--                 -->
+<!--                 -->
+<!--                 -->//On exporte que les fonctions dont on a besoin..
+<!--                 -->export { ucfirst, validate };
+<!--             --></code></pre>
+                <p>Et quand on souhaite importer:</p>
+                <pre><code class="hljs js">
+<!--                 -->//On importe ce dont on a besoin..
+<!--                 -->import { ucfirst, validate } from './fonctions.js;
+<!--             --></code></pre>
+                <p>Et on oublie pas dans la balise script:</p>
+                <pre><!--
+                 --><code class="hljs html"><!--
+                     -->&lt;script type="module" src="index.js"&gt&lt;/script&gt;
+<!--             --></code><!--
+             --></pre>
+            </article>
+        </div>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
+        <script type="module" src="js/class.js"></script>
+    </body>
+</html>

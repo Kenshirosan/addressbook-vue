@@ -1,0 +1,38 @@
+.container {
+    width: 960px;
+    height: 500px;
+    position: relative;
+}
+.red {
+    background: darkred;
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.modal {
+    background: snow;
+    text-align: center;
+    width: 480px;
+    height: 200px;
+    position: absolute;
+    top: calc(50% - 200px);
+    left: calc(50% - 240px);
+    display: none;
+}
+
+.modal.active {
+    display: block;
+}
+
+.modal-title {
+    padding: 1em;
+    color: white;
+    background: yellowgreen;
+}
+
+.modal-active {
+    background: rgba(0, 0, 0, 0.5);
+}

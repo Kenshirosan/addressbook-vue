@@ -1,0 +1,54 @@
+# 3WA Refonte PHP4 Laravel
+
+- [x] composer
+  - [x] À quoi ça sert ?
+  - [x] installation
+  - [x] Comment utiliser composer ?
+- [x] laravel installer
+  - [x] installation
+  - [x] commande laravel new
+- [x] routes 101
+    - [x] basic routing
+- [x] controllers
+- [x] blade 101
+- [x] BDD
+  - [x] le fichier .env
+  - [x] migrations
+  - [x] database factory
+  - [x] tinker 101
+- [x] models
+    - [x] $fillable
+    - [x] Database seeder
+    - [x] Eloquent 101
+    - [x] Basic Eloquent relationships
+        - [x] belongsTo
+        - [x] hasOne
+        - [x] hasMany
+- [x] routes 201
+    - [x] route model binding
+    - [x] n+1
+    - [x] $appends
+- [x] CRUD 
+    - [x] csrf
+    - [x] Create - Route::post()
+      - [x] $request->all()
+      - [x] Validation
+    - [x] Read - Route::get()
+    - [x] Update - Route::patch()
+    - [x] Delete - Route::delete()
+- [x] Redirection and messaging
+- [x] sessions
+  - [x] Register
+  - [x] Login
+- [x] guest / auth middleware
+- [x] blade 201
+    - [x] directive @can
+    - [x] Custom Middleware.
+    - [x] policies
+- [x] front end
+  - [x] laravel mix
+  - [x] Jetstream / Inertia
+  - [x] Image upload
+- [x] Advanced Eloquent relationships
+    - [x] many-to-many
+    - [x] polymorphic

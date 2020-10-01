@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="../css/style.css" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="../img/icon/logo.png"
+        />
+        <title>Vue data binding</title>
+    </head>
+    <body>
+        <div id="app">
+            <header-template></header-template>
+            <div class="container">
+                <h1>Exercice v-model</h1>
+                <p>
+                    Quand on remplit les champs du formulaire, le texte de
+                    chaque champ doit s'afficher dans un span correspondant en
+                    dessous du formulaire
+                </p>
+                <div class="form-group">
+                    <form action="" method="POST">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" />
+                        <span class="email"></span>
+                        <label for="pass">Password</label>
+                        <input type="password" id="pass" />
+                        <span class="password"></span>
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" />
+                        <span class="phone"></span>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <footer-template></footer-template>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="module">
+            import HeaderTemplate from '../components/header.js';
+            import FooterTemplate from '../components/footer.js';
+
+            // <!-- Creer un objet data   -->
+            // <!-- Relier l'objet data avec le formulaire   -->
+            // <!-- Afficher le contenu des inputs dans les span correspondants   -->
+            new Vue({
+                el: '#app',
+                components: { HeaderTemplate, FooterTemplate },
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+* {
+    box-sizing: border-box;
+}
+
+.img {
+    width: 25%;
+}
+
+img {
+    max-width: 100%;
+}
+
+.content {
+    width: 960px;
+    background: grey;
+    margin: 0 auto;
+}
+
+input, textarea {
+    display: block;
+    padding: 1em;
+    margin: 1em;
+}

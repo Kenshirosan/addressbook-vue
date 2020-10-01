@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/dark.min.css"
+        />
+        <link rel="stylesheet" href="../css/style.css" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="../img/icon/logo.png"
+        />
+        <title>Vue.js</title>
+    </head>
+    <body>
+        <div id="app">
+            <header-template></header-template>
+            <div class="container">
+                <h2>Pour démarrer:</h2>
+                <ol>
+                    <li>
+                        <p>
+                            Installer l'extension officielle Vue.js pour votre
+                            navigateur
+                            <span
+                                ><a
+                                    href="https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools"
+                                    >pour firefox</a
+                                ></span
+                            >
+                            <span
+                                ><a
+                                    href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd"
+                                    >pour chrome</a
+                                ></span
+                            >
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Ouvrir la console et aller dans l'onglet Vue puis
+                            cliquer sur root
+                        </p>
+                    </li>
+                    <li>
+                        <p>Aller dans la console JS et taper</p>
+                        <pre><code class="hljs js">$vm</code></pre>
+                        ou
+                        <pre><code
+                            class="hljs js">$vm0</code></pre>
+                        <span>vm signifie viewmodel</span>
+                    </li>
+                    <li>
+                        <a
+                            href="!#"
+                            @click.prevent="showVueIntro = !showVueIntro"
+                            >Cliquez ici</a
+                        >
+                    </li>
+                </ol>
+
+                <section :class="classes">
+                    <h2>Bienvenue dans Vue (view)</h2>
+                    <article>
+                        <header>
+                            <a
+                                href="https://vuejs.org/"
+                                rel="noreferrer"
+                                target="_blank"
+                            >
+                                <span
+                                    >Vue.js est un framework JavaScript qui
+                                    permet de développer des interfaces
+                                    utilisateur de manière simple et
+                                    efficace.</span
+                                >
+                            </a>
+                        </header>
+                        <div class="content">
+                            <p>
+                                Vue peut être utilisé pour se faciliter la tâche
+                                quand on développe des applications simple, mais
+                                aussi des 'Single Page Applications'
+                            </p>
+                            <p>
+                                On peut utiliser Vue seul ou avec d'autres
+                                librairies.
+                            </p>
+                            <p>
+                                La façon la plus simple pour commencer avec Vue
+                                est d'intégrer un script depuis un CDN
+                            </p>
+                            <pre><!--
+                            --><code class="hljs html"><!--
+                                --><span class="token tag"><!--
+                                    --><span><</span>script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"<span>></span><span ><</span>script<span>></span><!--
+                                --></span><!--
+                            --></code><!--
+                        --></pre>
+                            <p>
+                                Toutes les applications Vue commence en créant
+                                une nouvelle instance de Vue grace à la fonction
+                                Vue:
+                            </p>
+                            <pre><!--
+                            --><code class="hljs js"><!--
+                                -->new Vue({
+<!--                            -->  //options
+<!--                            -->});
+<!--                     --></code><!--
+                        --></pre>
+                            <p>
+                                La fonction Vue prend un objet en argument, cet
+                                objet contiendra nos données, fonctions et bien
+                                d'autres, qui serviront à gérer le comportement
+                                des pages.
+                            </p>
+                            <p>
+                                Le guide
+                                <a href="https://vuejs.org/">officiel </a
+                                >répertorie toutes les options disponibles.
+                            </p>
+                            <p>
+                                Une application Vue est contenu dans un instance
+                                'racine' (le root élément qu'on voit dans
+                                l'onglet Vue dans la console.) créée avec la
+                                fonction Vue, organisee de manière optionelle en
+                                différents composants. Chaque composant
+                                apparaitra comme un enfant de cette instance.
+                            </p>
+                            <p>
+                                L'élément root est un élément HTML auquel on
+                                attache une instance de Vue.
+                            </p>
+                            <p>Voici le code qui rend cette page dynamique</p>
+                            <pre><code class="js language-js"><!--
+                         -->&lt;script type="module"&gt;
+<!--                         -->    import HeaderTemplate from '../components/header.js';
+<!--                         -->    import FooterTemplate from '../components/footer.js';
+<!--                         -->    new Vue({
+<!--                         -->        el: '#app', // on attache l'instance de Vue a cet élément.
+<!--                         -->        components: { HeaderTemplate, FooterTemplate },
+<!--                         -->        data() {
+<!--                         -->            return {
+<!--                         -->                showVueIntro: false,
+<!--                         -->                };
+<!--                         -->         },
+<!--                         -->         computed: {
+<!--                         -->             classes() {
+<!--                         -->                return this.showVueIntro ? 'active' : 'inactive';
+<!--                         -->             },
+<!--                         -->         },
+<!--                         -->    });
+<!--                     -->&lt;/script&gt;
+<!--                     --></code></pre>
+                        </div>
+                    </article>
+                </section>
+                <p>
+                    Ce code est certainement obscur pour l'instant mais vous
+                    allez voir au fur et à mesure de la semaine qu'il est en
+                    réalité très simple de travailler avec cette librairie.
+                </p>
+            </div>
+            <footer-template></footer-template>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="module">
+            import HeaderTemplate from '../components/header.js';
+            import FooterTemplate from '../components/footer.js';
+            new Vue({
+                el: '#app', // on attache l'instance de Vue a cet élément.
+                components: { HeaderTemplate, FooterTemplate },
+                data() {
+                    return {
+                        showVueIntro: false,
+                    };
+                },
+
+                computed: {
+                    classes() {
+                        return this.showVueIntro ? 'active' : 'inactive';
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

@@ -51,6 +51,24 @@
             <img src="/img/app.png" alt="app arch" />
             <img src="/img/main.png" alt="app arch" />
             <img src="/img/index.png" alt="app arch" />
+            <p></p>
+            <p>
+                Un fichier .vue est structuré par deux éléments requis :
+                <code>&lt;template></code> et <code>&lt;script></code> et un tag
+                <code>&lt;style></code> optionnel.
+            </p>
+            <p>
+                <em
+                    ><strong
+                        >Important : Dans le tag template, un seul élément
+                        racine doit être présent.</strong
+                    ></em
+                >
+                Par exemple, si le composant contient deux
+                <code>&lt;ul></code> elles devront être entourées par une balise
+                <code>&lt;div></code>, si le composant ne contient qu'une
+                <code>&lt;ul></code>, on peut le laisser ainsi
+            </p>
             <p>Voici la syntaxe d'un composant dans un fichier .vue</p>
             <pre><!--
 --><code class="hljs html"><!--
@@ -112,6 +130,32 @@
     }
 &lt;/script>
 </code></pre>
+            <p>
+                On ne doit / peut pas modifier un props directement dans le
+                composant dans lequel il est déclaré.
+            </p>
+            <p>
+                On doit le modifier dans l'élément parent. Il est possible de le
+                faire, mais c'est une grande source de problèmes, et Vue affiche
+                un warning à ce propos dans la console quand on essaye.
+            </p>
+            <p>
+                Dans l'exemple ci-dessus, si le tag
+                <code>&lt;slider-component></code> est inclus dans un fichier
+                PHP, la modification du <code>props</code> devra se faire dans
+                ce fichier.
+            </p>
+
+            <h3>Note à propos des slot</h3>
+            <p>
+                Les slots sont d'autres aides très utiles que fournit Vue.js, à
+                ce stade de la formation, nous estimons que vous devez parcourir
+                la
+                <a href="https://vuejs.org/v2/guide/components-slots.html"
+                    >documentation</a
+                >
+                vous-même.
+            </p>
         </div>
         <footer-component></footer-component>
     </div>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <link
+            rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/dark.min.css"
+        />
+        <link rel="stylesheet" href="../css/style.css" />
+        <title>Les classes en JavaScript</title>
+    </head>
+    <body>
+        <header>
+            <h1>Les classes en JavaScript : l'héritage</h1>
+        </header>
+        <div class="container">
+            <article>
+                <p>
+                    Reprenons notre classe CustomErrors, son utilité est de
+                    capturer les erreurs ou elles se produisent, et par la
+                    suite, on affiche un message d'erreur.
+                </p>
+                <p>
+                    En JavaScript, au même titre que la classe Date ou Math, on
+                    a accès a la classe Error.
+                </p>
+                <p>
+                    Ouvrez la console <code>f12</code> et taper le code suivant:
+                </p>
+                <pre><!--
+                --><code class="hljs js"><!--
+                -->console.dir(new Error());
+<!--            --></code>
+                </pre>
+                <p>
+                    <img src="img/error.png" alt="" />
+                    On voit quand on clique sur 'prototype' que la class Error
+                    native possède une propriété 'message'. Nous reviendrons
+                    plus tard sur ce qu'est le prototype.
+                </p>
+                <p>
+                    Notre classe CustomErrors ne possède pas de telle propriété,
+                    mais on en aurait bien besoin
+                </p>
+                <p>
+                    Plutôt que créer une propriété message sur notre classe, on
+                    va faire en sorte d'hériter des propriétés de la classe
+                    native.
+                </p>
+                <pre><!--
+                --><code class="hljs js"><!--
+                -->class CustomErrors extends Error {
+<!--            -->
+<!--            -->}
+<!--            --></code><!--
+            --></pre>
+                Le mot-clé
+                <pre><code class="hljs js">extends</code></pre>
+                <p>
+                    Grâce à ce mot-clé, on peut hériter de toutes les propriétés
+                    et méthodes de la classe parente. Quand on hérite d'une
+                    classe en JavaScript, si les deux classes ont un
+                    constructeur on doit appeler la méthode
+                </p>
+                <pre><code class="hljs js">super()</code></pre>
+                <p>
+                    pour initialiser le constructeur de la méthode parente. Et
+                    appeler cette méthode avant l'utilisation du mot-clé
+                    <code>this</code>
+                </p>
+                <ul>
+                    <li>
+                        Quand on instancie une classe avec
+                        <code>new</code>, on crée un objet vide et on y assigne
+                        <code>this</code>
+                    </li>
+                    <li>
+                        Mais quand on le fait avec une classe dérivée, celle ci
+                        attend de la classe parente qu'elle fasse ce travail.
+                    </li>
+                </ul>
+                <pre><!--
+                 --><code class="hljs js"><!--
+                     -->class CustomErrors extends Error {
+<!--                 -->    constructor() {
+<!--                 -->        super(); // Le constructeur de la classe parente.
+<!--                 -->    }
+<!--                 -->
+<!--                 -->    recordErrors(errors) {
+<!--                 -->        this.message = errors;
+<!--                 -->    }
+<!--                 -->
+<!--                 -->    getErrors() {
+<!--                 -->        return this.message;
+<!--                 -->    }
+<!--                 -->}
+<!--                 -->
+<!--                -->export default CustomErrors;
+<!--             --></code><!--
+             --></pre>
+                <p>
+                    Après cette opération, on a accès à la propriété message de
+                    la classe parente. Et le mot-clé <code>this</code> est
+                    initialisé.
+                </p>
+                <pre><!--
+                 --><code class="hljs js"><!--
+                     -->import CustomErrors from './CustomErrors.js';
+<!--                 -->// Une erreur s'est produite
+<!--                 -->const errorMessage = {
+<!--                 -->    error: 'unknown',
+<!--                 -->    message: 'Same player play again',
+<!--                 -->};
+<!--                 -->
+<!--                 -->// On instancie la classe
+<!--                 -->const customError = new CustomErrors();
+<!--                 -->
+<!--                 -->// On enregistre le message
+<!--                 -->customError.recordErrors(errorMessage);
+<!--                 -->
+<!--                 -->// Grace a l'héritage, on accede à la propriété message de la classe parente.
+<!--                 -->console.log(customError.getErrors());
+<!--                 -->
+<!--                 -->console.log(customError);
+<!--             --></code><!--
+             --></pre>
+                <code>f12</code>
+            </article>
+        </div>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
+        <script type="module" src="js/heritage.js"></script>
+    </body>
+</html>

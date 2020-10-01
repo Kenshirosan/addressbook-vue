@@ -13,7 +13,7 @@ class Age {
             this._age < this.minimum ||
             this._age > this.maximum
         ) {
-            return this.isValid;
+            return (this.isValid = false);
         }
 
         return (this.isValid = true);
