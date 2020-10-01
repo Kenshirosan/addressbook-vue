@@ -20,7 +20,7 @@
 ## Project setup
 
 ```sh
-cd /path/to/app
+cd /path/to/7-dot-vue-files
 ```
 
 ```sh

@@ -10,10 +10,6 @@
 ## Project setup
 
 ```sh
-git clone https://github.com/Kenshirosan/addressbook.git
-```
-
-```sh
 cd /path/to/app
 ```
 
