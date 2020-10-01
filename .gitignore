@@ -1,4 +1,5 @@
 .DS_Store
+JS4.1/node_modules
 JS5.1/addressbook-no-vuex/node_modules
 JS5.1/addressbook-vuex/node_modules
 JS5.1/vue-basics_and_exercises/7-dot-vue-files/node_modules
