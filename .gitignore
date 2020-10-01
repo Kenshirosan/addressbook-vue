@@ -15,7 +15,7 @@ PHP4-Laravel/app-lara-8/laravel8/Homestead.json
 PHP4-Laravel/app-lara-8/laravel8/Homestead.yaml
 PHP4-Laravel/app-lara-8/laravel8/npm-debug.log
 PHP4-Laravel/app-lara-8/laravel8/yarn-error.log
-JS2.1/.idea
+
 # local env files
 .env.local
 .env.*.local

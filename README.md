@@ -1,20 +1,3 @@
 # addressbook
 
-## Features
-
----
-
--   Introduction a Vue.js,
--   Différents exemples simples portant sur v-model, v-for, v-if, native et global events ainsi que le data object,
--   CRUD Application using localstorage. Built with [Vue.js](https://vuejs.org/),
--   Parent / Child communication,
--   props,
--   native and custom events,
--   global events,
--   Computed properties,
--   Watchers,
--   Vuex
--   Introduction aux classes et prototypes en javascript
--   Introduction aux requêtes ajax, avec xmlhttp, jquery, fetch.
--   Introduction aux promises
-
+-   programme JS2.1, JS4.1, JS5.1, JS6.1 + PHP Laravel
